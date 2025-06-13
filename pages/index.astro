@@ -1,0 +1,43 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import HeroSection from "../components/HeroSection.astro";
+import ProjectsGrid from "../components/ProjectsGrid.jsx";
+import ExperienceSection from "../components/ExperienceSection.astro";
+import EducationSection from "../components/EducationSection.astro";
+---
+
+<Layout title="Portafolio | Jeronimo Mayorca">
+  <Navbar />
+  <HeroSection />
+  <section id="projects" class="py-20">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Proyectos</h2>
+    <div class="flex justify-center">
+      <div
+        class="vento-grid-bg overflow-hidden p-2 md:p-6 lg:p-10 rounded-3xl w-full max-w-7xl box-border"
+      >
+        <ProjectsGrid client:only="react" />
+      </div>
+    </div>
+  </section>
+  <ExperienceSection />
+  <EducationSection />
+</Layout>
+
+<style>
+  section {
+    opacity: 0;
+    animation: fadeIn 1s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
