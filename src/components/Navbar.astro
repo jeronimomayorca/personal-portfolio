@@ -13,7 +13,7 @@
         href="#projects"
         class="hover:text-accent transition-colors font-medium relative group navbar-link"
       >
-        Proyectos
+        Projects
         <span
           class="block h-0.5 bg-accent scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"
         ></span>
@@ -22,7 +22,7 @@
         href="#experience"
         class="hover:text-accent transition-colors font-medium relative group navbar-link"
       >
-        Experiencia
+        Experience
         <span
           class="block h-0.5 bg-accent scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"
         ></span>
@@ -31,15 +31,15 @@
         href="#education"
         class="hover:text-accent transition-colors font-medium relative group navbar-link"
       >
-        Formación
+        Education
         <span
           class="block h-0.5 bg-accent scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"
         ></span>
       </a>
       <!-- Social Icons -->
-      <div class="flex items-center gap-3 ml-4">
+      <div class="flex items-center gap-4 ml-4">
         <a
-          href="https://github.com/tuusuario"
+          href="https://github.com/jeronimomayorca"
           target="_blank"
           rel="noopener"
           class="hover:text-accent transition-colors group"
@@ -60,7 +60,7 @@
           </svg>
         </a>
         <a
-          href="https://linkedin.com/in/tuusuario"
+          href="https://linkedin.com/in/mayorcajeronimo"
           target="_blank"
           rel="noopener"
           class="hover:text-accent transition-colors group"
@@ -77,7 +77,7 @@
           </svg>
         </a>
         <a
-          href="https://twitter.com/tuusuario"
+          href="https://twitter.com/JeronimoMayorca"
           target="_blank"
           rel="noopener"
           class="hover:text-accent transition-colors group"
@@ -93,31 +93,13 @@
             ></path>
           </svg>
         </a>
-        <a
-          href="mailto:tuemail@dominio.com"
-          class="hover:text-accent transition-colors group"
-          aria-label="Email"
-        >
-          <svg
-            class="w-6 h-6 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <rect width="20" height="16" x="2" y="4" rx="2"></rect>
-            <path d="m22 6-8.97 6.66a2 2 0 0 1-2.36 0L2 6"></path>
-          </svg>
-        </a>
       </div>
     </div>
     <!-- Botón hamburguesa solo en móvil -->
     <button
       id="mobile-menu-button"
       class="flex md:hidden items-center justify-center w-10 h-10 rounded-lg hover:bg-accent/10 transition-colors"
-      aria-label="Abrir menú"
+      aria-label="Open menu"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -136,6 +118,51 @@
   </div>
 </nav>
 
+<script>
+  // Función para el desplazamiento suave
+  function smoothScroll(e: Event) {
+    e.preventDefault();
+    const target = e.currentTarget as HTMLAnchorElement;
+    const targetId = target.getAttribute("href");
+    if (!targetId) return;
+
+    const targetElement = document.querySelector(targetId);
+    if (!targetElement) return;
+
+    // Obtener la posición del elemento objetivo
+    const targetPosition =
+      targetElement.getBoundingClientRect().top + window.pageYOffset;
+    const startPosition = window.pageYOffset;
+    const distance = targetPosition - startPosition;
+    const duration = 1000; // duración en milisegundos
+    let start: number | null = null;
+
+    // Función de animación
+    function animation(currentTime: number) {
+      if (start === null) start = currentTime;
+      const timeElapsed = currentTime - start;
+      const progress = Math.min(timeElapsed / duration, 1);
+
+      // Función de easing (easeInOutCubic)
+      const ease = (t: number) =>
+        t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+      window.scrollTo(0, startPosition + distance * ease(progress));
+
+      if (timeElapsed < duration) {
+        requestAnimationFrame(animation);
+      }
+    }
+
+    requestAnimationFrame(animation);
+  }
+
+  // Agregar el evento a todos los enlaces del navbar
+  document.querySelectorAll(".navbar-link").forEach((link) => {
+    link.addEventListener("click", smoothScroll);
+  });
+</script>
+
 <style>
   @keyframes navbar-fade-in {
     from {
@@ -150,4 +177,39 @@
   .animate-navbar-fade-in {
     animation: navbar-fade-in 0.8s cubic-bezier(0.4, 2, 0.3, 1) 0.1s both;
   }
+
+  /* Animación para las secciones al hacer scroll */
+  section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0.6s ease-out,
+      transform 0.6s ease-out;
+  }
+
+  section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
 </style>
+
+<script>
+  // Función para animar las secciones al hacer scroll
+  function animateOnScroll() {
+    const sections = document.querySelectorAll("section");
+    const triggerBottom = window.innerHeight * 0.8;
+
+    sections.forEach((section) => {
+      const sectionTop = section.getBoundingClientRect().top;
+
+      if (sectionTop < triggerBottom) {
+        section.classList.add("visible");
+      }
+    });
+  }
+
+  // Observar el scroll
+  window.addEventListener("scroll", animateOnScroll);
+  // Ejecutar una vez al cargar la página
+  window.addEventListener("load", animateOnScroll);
+</script>
