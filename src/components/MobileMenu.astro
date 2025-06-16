@@ -1,10 +1,16 @@
-<div id="mobile-menu" class="fixed inset-0 bg-primary/95 z-50 hidden">
+<nav
+  id="mobile-menu"
+  class="fixed inset-0 bg-primary/95 z-50 hidden"
+  role="dialog"
+  aria-modal="true"
+>
   <div id="mobile-menu-backdrop" class="absolute inset-0 w-full h-full"></div>
   <div class="container mx-auto px-4 py-8 relative z-10">
     <div class="flex justify-end">
       <button
         id="close-menu"
         class="text-white hover:text-accent transition-colors"
+        aria-label="Close menu"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -23,7 +29,7 @@
     </div>
     <div class="flex flex-col items-center justify-center h-[80vh] space-y-8">
       <a
-        href="https://github.com/tuusuario"
+        href="https://github.com/jeronimomayorca"
         target="_blank"
         rel="noopener"
         class="hover:text-accent transition-colors mobile-social-link"
@@ -43,7 +49,7 @@
         >
       </a>
       <a
-        href="https://linkedin.com/in/tuusuario"
+        href="https://linkedin.com/in/mayorcajeronimo"
         target="_blank"
         rel="noopener"
         class="hover:text-accent transition-colors mobile-social-link"
@@ -56,7 +62,7 @@
         >
       </a>
       <a
-        href="https://twitter.com/tuusuario"
+        href="https://twitter.com/JeronimoMayorca"
         target="_blank"
         rel="noopener"
         class="hover:text-accent transition-colors mobile-social-link"
@@ -68,26 +74,9 @@
           ></path></svg
         >
       </a>
-      <a
-        href="mailto:tuemail@dominio.com"
-        class="hover:text-accent transition-colors mobile-social-link"
-        aria-label="Email"
-      >
-        <svg
-          class="w-10 h-10"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          viewBox="0 0 24 24"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          ><rect width="20" height="16" x="2" y="4" rx="2"></rect><path
-            d="m22 6-8.97 6.66a2 2 0 0 1-2.36 0L2 6"></path></svg
-        >
-      </a>
     </div>
   </div>
-</div>
+</nav>
 
 <script>
   const mobileMenuButton = document.getElementById("mobile-menu-button");
@@ -96,24 +85,57 @@
   const mobileMenuBackdrop = document.getElementById("mobile-menu-backdrop");
 
   mobileMenuButton?.addEventListener("click", () => {
-    mobileMenu?.classList.remove("hidden");
-    document.body.style.overflow = "hidden";
+    if (mobileMenu?.classList.contains("hidden")) {
+      mobileMenu?.classList.remove("hidden");
+      document.body.style.overflow = "hidden";
+    } else {
+      if (mobileMenu) {
+        mobileMenu.style.animation = "slideOut 0.3s ease-out forwards";
+        mobileMenu.addEventListener("animationend", function handler() {
+          mobileMenu?.classList.add("hidden");
+          mobileMenu.style.animation = "";
+          document.body.style.overflow = "";
+          mobileMenu.removeEventListener("animationend", handler);
+        });
+      }
+    }
   });
 
   closeMenuButton?.addEventListener("click", () => {
-    mobileMenu?.classList.add("hidden");
-    document.body.style.overflow = "";
+    if (mobileMenu) {
+      mobileMenu.style.animation = "slideOut 0.3s ease-out forwards";
+      mobileMenu.addEventListener("animationend", function handler() {
+        mobileMenu?.classList.add("hidden");
+        mobileMenu.style.animation = "";
+        document.body.style.overflow = "";
+        mobileMenu.removeEventListener("animationend", handler);
+      });
+    }
   });
 
   mobileMenuBackdrop?.addEventListener("click", () => {
-    mobileMenu?.classList.add("hidden");
-    document.body.style.overflow = "";
+    if (mobileMenu) {
+      mobileMenu.style.animation = "slideOut 0.3s ease-out forwards";
+      mobileMenu.addEventListener("animationend", function handler() {
+        mobileMenu?.classList.add("hidden");
+        mobileMenu.style.animation = "";
+        document.body.style.overflow = "";
+        mobileMenu.removeEventListener("animationend", handler);
+      });
+    }
   });
 
   document.querySelectorAll(".mobile-social-link").forEach((link) => {
     link.addEventListener("click", () => {
-      mobileMenu?.classList.add("hidden");
-      document.body.style.overflow = "";
+      if (mobileMenu) {
+        mobileMenu.style.animation = "slideOut 0.3s ease-out forwards";
+        mobileMenu.addEventListener("animationend", function handler() {
+          mobileMenu?.classList.add("hidden");
+          mobileMenu.style.animation = "";
+          document.body.style.overflow = "";
+          mobileMenu.removeEventListener("animationend", handler);
+        });
+      }
     });
   });
 </script>
@@ -131,6 +153,17 @@
     to {
       opacity: 1;
       transform: translateX(0);
+    }
+  }
+
+  @keyframes slideOut {
+    from {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateX(100%);
     }
   }
 </style>

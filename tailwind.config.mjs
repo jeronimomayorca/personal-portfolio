@@ -8,6 +8,10 @@ export default {
                 secondary: '#1e293b',
                 accent: '#3b82f6',
             },
+            fontFamily: {
+                sora: ['Sora', 'sans-serif'],
+                domine: ['Domine', 'serif'],
+            },
             animation: {
                 'fade-in': 'fadeIn 0.5s ease-in-out',
                 'slide-up': 'slideUp 0.5s ease-out',

@@ -5,41 +5,51 @@ import HeroSection from "../components/HeroSection.astro";
 import ProjectsGrid from "../components/ProjectsGrid.jsx";
 import ExperienceSection from "../components/ExperienceSection.astro";
 import EducationSection from "../components/EducationSection.astro";
+
+const title = "Jeronimo Mayorca | Full Stack & AI Developer";
+const description =
+  "Portfolio of Jeronimo Mayorca, a Full Stack and AI Developer specializing in Python, TypeScript, and JavaScript. Explore my projects and experience in web development and artificial intelligence.";
+
+// Schema.org markup for Person
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Jeronimo Mayorca",
+  url: "https://jeronimomayorca.vercel.app",
+  jobTitle: "Full Stack & AI Developer",
+  sameAs: [
+    "https://github.com/jeronimomayorca",
+    "https://linkedin.com/in/mayorcajeronimo",
+    "https://twitter.com/JeronimoMayorca",
+  ],
+};
 ---
 
-<Layout title="Portafolio | Jeronimo Mayorca">
+<Layout title={title} description={description} image="/og-image.png">
+  <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+
   <Navbar />
-  <HeroSection />
-  <section id="projects" class="py-20">
-    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
-      Feel free to explore some of my featured projects ;)
-    </h2>
-    <div class="flex justify-center">
-      <div
-        class="vento-grid-bg overflow-hidden p-2 md:p-6 lg:p-10 rounded-3xl w-full max-w-7xl box-border"
+
+  <main>
+    <HeroSection />
+
+    <section id="projects" class="py-20" aria-labelledby="projects-heading">
+      <h2
+        id="projects-heading"
+        class="text-3xl md:text-4xl font-bold text-center mb-12 font-sora"
       >
-        <ProjectsGrid client:only="react" />
+        Featured Projects
+      </h2>
+      <div class="flex justify-center">
+        <div
+          class="vento-grid-bg overflow-hidden p-2 md:p-6 lg:p-10 rounded-3xl w-full max-w-7xl box-border"
+        >
+          <ProjectsGrid client:only="react" />
+        </div>
       </div>
-    </div>
-  </section>
-  <ExperienceSection />
-  <EducationSection />
+    </section>
+
+    <ExperienceSection />
+    <EducationSection />
+  </main>
 </Layout>
-
-<style>
-  section {
-    opacity: 0;
-    animation: fadeIn 1s ease-out forwards;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-</style>

@@ -4,28 +4,60 @@ import MobileMenu from "../components/MobileMenu.astro";
 interface Props {
   title: string;
   description?: string;
+  image?: string;
+  canonicalURL?: string;
 }
 
 const {
   title,
-  description = "Personal portfolio showcasing my work and skills",
+  description = "I'm Jerónimo Mayorca, a developer with expertise in Python and web technologies like TypeScript and JavaScript. I specialize in applied artificial intelligence — from innovative personal projects to custom AI integrations for businesses. Discover my high-impact tech solutions.",
+  image = "/og-image.png",
+  canonicalURL = new URL(Astro.url.pathname, Astro.site).toString(),
 } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.png" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="description" content={description} />
+
+    <!-- Primary Meta Tags -->
     <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={image} />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Preconnect to external resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Domine:wght@400;700&family=Sora:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body class="bg-primary text-white min-h-screen universe-bg">
-    <header class="fixed w-full bg-secondary/80 backdrop-blur-sm z-50"></header>
-
-    <MobileMenu />
+    <header class="fixed w-full bg-secondary/80 backdrop-blur-sm z-50">
+      <MobileMenu />
+    </header>
 
     <main class="pt-20">
       <slot />
@@ -33,7 +65,7 @@ const {
 
     <footer class="bg-secondary mt-20 py-8">
       <div class="container mx-auto px-4 text-center">
-        <p>
+        <p class="font-domine text-lg">
           &copy; {new Date().getFullYear()} Mayorcadev. All rights reserved.
         </p>
       </div>
@@ -43,9 +75,9 @@ const {
 
 <style is:global>
   :root {
-    --accent: 59, 130, 246;
-    --accent-light: 96, 165, 250;
-    --accent-dark: 37, 99, 235;
+    --accent: 0, 255, 127;
+    --accent-light: 57, 255, 157;
+    --accent-dark: 0, 200, 100;
     --accent-gradient: linear-gradient(
       45deg,
       rgb(var(--accent)),
@@ -98,6 +130,12 @@ const {
       );
     background-size: cover;
     opacity: 0.7;
+  }
+
+  .shadow-glow-sm {
+    box-shadow:
+      0 0 5px rgba(var(--accent), 0.5),
+      0 0 10px rgba(var(--accent), 0.3);
   }
 
   code {

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jeronimomayorca.vercel.app/sitemap.xml 
