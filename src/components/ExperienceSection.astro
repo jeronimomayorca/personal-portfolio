@@ -1,0 +1,140 @@
+---
+// Schema.org markup for work experience
+const workExperienceSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      item: {
+        "@type": "JobPosting",
+        title: "IT & Programming Teacher",
+        datePosted: "2024-09-01",
+        validThrough: "2024-12-31",
+        employmentType: "FULL_TIME",
+        hiringOrganization: {
+          "@type": "Organization",
+          name: "Colegiatura del Café",
+        },
+        description:
+          "Teaching core concepts of computing and basic IT tools to 10th and 11th grade students.",
+      },
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      item: {
+        "@type": "JobPosting",
+        title: "Freelance Backend Developer",
+        datePosted: "2024-01-01",
+        validThrough: "2024-02-29",
+        employmentType: "CONTRACT",
+        hiringOrganization: {
+          "@type": "Organization",
+          name: "Soluciones en la nube XaraSoft",
+        },
+        description:
+          "Contributed to the development of an accounting software for schools performing +20 CRUD operations.",
+      },
+    },
+    {
+      "@type": "ListItem",
+      position: 3,
+      item: {
+        "@type": "JobPosting",
+        title: "Junior Fullstack Developer",
+        datePosted: "2023-06-01",
+        validThrough: "2024-03-31",
+        employmentType: "FULL_TIME",
+        hiringOrganization: {
+          "@type": "Organization",
+          name: "Humphrey Consulting Group",
+        },
+        description:
+          "Improved compliance management for 200+ users by implementing new doctypes in Frappe Framework and design patterns.",
+      },
+    },
+  ],
+};
+---
+
+<section id="experience" class="py-20" aria-labelledby="experience-heading">
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify(workExperienceSchema)}
+  />
+
+  <h2
+    id="experience-heading"
+    class="text-3xl md:text-4xl font-bold text-center mb-12 font-sora"
+  >
+    Experience
+  </h2>
+  <div class="container mx-auto px-6 sm:px-8 lg:px-12">
+    <div class="max-w-3xl mx-auto">
+      <ol class="relative border-l border-accent">
+        <li class="mb-10 ml-6">
+          <span
+            class="absolute -left-3 flex items-center justify-center w-6 h-6 bg-accent rounded-full ring-8 ring-primary"
+            aria-hidden="true"></span>
+          <h3 class="flex items-center mb-1 text-xl font-semibold font-sora">
+            IT & Programming Teacher
+            <span
+              class="bg-accent/20 text-accent text-xs font-medium mr-2 px-2.5 py-0.5 rounded ml-2"
+              >September 2024 - Present</span
+            >
+          </h3>
+          <p class="mb-2 text-lg font-normal text-gray-400 font-domine">
+            Colegiatura del Café
+          </p>
+          <p class="text-base text-gray-500 font-domine">
+            I teach to 10th and 11th grade students core concepts of computing
+            and basic IT tools like spreadsheets, text processors, presentation
+            tools and more
+          </p>
+        </li>
+        <li class="mb-10 ml-6">
+          <span
+            class="absolute -left-3 flex items-center justify-center w-6 h-6 bg-accent rounded-full ring-8 ring-primary"
+            aria-hidden="true"></span>
+          <h3 class="flex items-center mb-1 text-xl font-semibold font-sora">
+            Freelance Backend Developer
+            <span
+              class="bg-accent/20 text-accent text-xs font-medium mr-2 px-2.5 py-0.5 rounded ml-2"
+              >January 2025 - February 2024</span
+            >
+          </h3>
+          <p class="mb-2 text-lg font-normal text-gray-400 font-domine">
+            Soluciones en la nube XaraSoft
+          </p>
+          <p class="text-base text-gray-500 font-domine">
+            I contributed to the development of an accounting software for
+            schools perfoming +20 crud operations
+          </p>
+        </li>
+        <li class="mb-10 ml-6">
+          <span
+            class="absolute -left-3 flex items-center justify-center w-6 h-6 bg-accent rounded-full ring-8 ring-primary"
+            aria-hidden="true"></span>
+          <h3 class="flex items-center mb-1 text-xl font-semibold font-sora">
+            Junior Fullstack Developer
+            <span
+              class="bg-accent/20 text-accent text-xs font-medium mr-2 px-2.5 py-0.5 rounded ml-2"
+              >June 2023 - March 2024</span
+            >
+          </h3>
+          <p class="mb-2 text-lg font-normal text-gray-400 font-domine">
+            Humphrey Consulting Group
+          </p>
+          <p class="text-base text-gray-500 font-domine">
+            Improved compliance management for 200+ users by implementing new
+            doctypes in Frappe Framework and design patterns, reducing
+            processing time by 30%. Achieved 40% cost savings, 60% faster
+            support with ZOHO chat and resolved 30+ critical API issues.
+          </p>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>

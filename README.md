@@ -1,56 +1,106 @@
-<h2 align="center">
-  Portfolio Website - v2.0<br/>
-  <a href="https://jeronimomayorca.vercel.app" target="_blank">mayorcajeronimo.dev</a>
-</h2>
-<div align="center">
-  <img alt="Demo" src="./Images/readme-img1.png" />
-</div>
+# Personal Portfolio — Astro SPA
 
-<br/>
+Minimal, modern, and animated portfolio built with [Astro](https://astro.build/), React, TailwindCSS, and Framer Motion.
+Features SPA-like navigation, smooth animations, interactive project grid, universe-inspired background, and fully responsive design.
 
-<!-- <h3 align="center">
-    🔹
-    <a href="https://github.com/soumyajit4419/Portfolio/issues">Report Bug</a> &nbsp; &nbsp;
-    🔹
-    <a href="https://github.com/soumyajit4419/Portfolio/issues">Request Feature</a>
-</h3> -->
+---
 
-## TL;DR
+## ✨ Demo
 
-My personal portfolio <a href="https://jeronimomayorca.vercel.app/" target="_blank">jeronimomayorca.dev</a> which features some of my github projects as well as my resume and technical skills.<br/>
+> _Add your live deployment link here (Vercel, Netlify, etc.)_
 
-This project was built using these technologies.
+---
 
-- React.js
-- Node.js
-- Express.js
-- CSS3
-- VsCode
-- Vercel
+## 🚀 Main Technologies
 
-## Features
+- **Astro** — Main framework, ultra-fast and component-based.
+- **React** — For the interactive, animated projects section.
+- **TailwindCSS** — Utility-first CSS for fast, responsive styling.
+- **Framer Motion** — Advanced scroll, layout, and modal animations.
+- **AOS** — (Optional) Scroll animations for other sections.
+- **MDX** — (Optional) For rich content if needed.
 
-**📖 Multi-Page Layout**
+---
 
-**🎨 Styled with React-Bootstrap and Css with easy to customize colors**
+## 📦 Installation & Usage
 
-**📱 Fully Responsive**
+1. **Clone the repository:**
+   ```sh
+   git clone https://github.com/your-username/your-portfolio.git
+   cd your-portfolio
+   ```
 
-## Getting Started
+2. **Install dependencies:**
+   ```sh
+   npm install
+   ```
 
-Clone down this repository. You will need `node.js` and `git` installed globally on your machine.
+3. **Start the development server:**
+   ```sh
+   npm run dev
+   ```
+   The site will be available at [http://localhost:4321](http://localhost:4321)
 
-## 🛠 Installation and Setup Instructions
+4. **Build for production:**
+   ```sh
+   npm run build
+   ```
 
-1. Installation: `npm install`
+---
 
-2. In the project directory, you can run: `npm start`
+## 🗂️ Main Structure
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-The page will reload if you make edits.
+```
+/
+├── public/                # Static images and assets
+├── src/
+│   ├── components/        # Astro and React components
+│   │   ├── Navbar.astro
+│   │   ├── MobileMenu.astro
+│   │   ├── HeroSection.astro
+│   │   ├── ProjectsGrid.jsx
+│   │   ├── ExperienceSection.astro
+│   │   └── EducationSection.astro
+│   ├── layouts/
+│   │   └── Layout.astro   # Base site layout
+│   └── pages/
+│       └── index.astro    # Main SPA page
+├── package.json
+└── tailwind.config.mjs
+```
 
-## Usage Instructions
+---
 
-Open the project folder and Navigate to `/src/components/`. <br/>
-You will find all the components used and you can edit your information accordingly.
+## 🧩 Key Components
+
+- **Navbar.astro** — Top navigation, animated and responsive.
+- **MobileMenu.astro** — Mobile menu with click-outside and icon close.
+- **HeroSection.astro** — Main introduction.
+- **ProjectsGrid.jsx** — "Vento"-style grid with animations and modal details (React + Framer Motion).
+- **ExperienceSection.astro** — Professional experience.
+- **EducationSection.astro** — Academic background.
+- **Layout.astro** — Base structure and universe-inspired background.
+
+---
+
+## 🖼️ Customization
+
+- Edit files in `src/components/` to update your info, projects, experience, etc.
+- Change images in the `public/` folder.
+- Adjust colors and fonts in `tailwind.config.mjs`.
+
+---
+
+## 📝 Useful Scripts
+
+| Command           | Action                                 |
+|-------------------|----------------------------------------|
+| `npm run dev`     | Development server                     |
+| `npm run build`   | Production build in `/dist`            |
+| `npm run preview` | Preview the build locally              |
+
+---
+
+## 📄 License
+
+> _Add your license here if you wish (MIT, CC, etc.)_
