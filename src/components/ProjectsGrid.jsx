@@ -12,30 +12,27 @@ const projects = [
     link: "https://agendatuservicio.co",
     size: "large",
     date: "January 2025",
-    client: "Personal Project",
     repo: "https://github.com/jeronimomayorca/tu-tecnico-de-confianza"
   },
   {
     title: "Enfermos por el Fútbol",
     description: "This was a university project where I built an app that simulates a single-elimination tournament. The outcome is based on each team's strength, endurance, speed, and accuracy.",
-    image: "/logo_epf.png",
+    image: "/logo_epf.webp",
     tags: ["Python", "Django", "SQL", "Graphs"],
-    link: "https://ecommerce-platform.com",
+    link: "Not available",
     size: "medium",
-    date: "2023-11-05",
-    client: "University Project",
+    date: "October 2023",
     repo: "https://github.com/jeronimomayorca/EnfermosxElFutbol"
   },
   {
     title: "VeloSecure",
-    description: "A collaborative task management application with real-time updates, notifications, and team boards.",
+    description: "Track your bike or bycicle 24/7, register your activities automatically to Strava and get a insurance policy for your bike or bycicle ;)",
     image: `https://api.microlink.io/?url=https://task-manager-app.com&screenshot=true&meta=false&embed=screenshot.url`,
     tags: ["Vue.js", "Firebase", "Tailwind"],
-    link: "https://task-manager-app.com",
+    link: "Not available",
     size: "small",
-    date: "2023-09-20",
-    client: "Productivity Tools",
-    repo: "https://github.com/youruser/task-manager"
+    date: "June 2025  ",
+    repo: "Not available"
   },
   {
     title: "Kevin's Jewelry",
@@ -45,7 +42,6 @@ const projects = [
     link: "https://jewelry-front.vercel.app/",
     size: "large",
     date: "August 2024",
-    client: "Kevin's Jewelry",
     repo: "https://github.com/MazorcaLlegosCorpp/jewelry-front"
   },
   {
@@ -53,11 +49,10 @@ const projects = [
     description: "Real-time weather information with interactive maps, charts, and forecast visualizations.",
     image: `https://api.microlink.io/?url=https://weather-dashboard.com&screenshot=true&meta=false&embed=screenshot.url`,
     tags: ["React", "OpenWeather API", "Chart.js"],
-    link: "https://weather-dashboard.com",
+    link: "Not available",
     size: "medium",
-    date: "2023-06-15",
-    client: "Weatherly",
-    repo: "https://github.com/youruser/weather-dashboard"
+    date: "April 2025",
+    repo: "Not available"
   },
 ];
 
@@ -164,7 +159,6 @@ export default function ProjectsGrid() {
               <h2 className="text-3xl font-bold mb-4 text-accent">{project.title}</h2>
               <div className="space-y-3 mb-6 text-gray-200">
                 <div className="text-sm"><b className="text-accent">Date:</b> {project.date}</div>
-                <div className="text-sm"><b className="text-accent">Client:</b> {project.client}</div>
                 <div className="text-sm">
                   <b className="text-accent">Repository:</b>{' '}
                   <a 
