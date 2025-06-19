@@ -6,11 +6,11 @@ import ProjectsGrid from "../components/ProjectsGrid.jsx";
 import ExperienceSection from "../components/ExperienceSection.astro";
 import EducationSection from "../components/EducationSection.astro";
 
-const title = "MayorcaDev | Jeronimo Mayorca - Full Stack & AI Developer";
+const title = "Jeronimo Mayorca | MayorcaDev - AI Developer & Full Stack";
 const description =
-  "MayorcaDev, el portafolio de Jeronimo Mayorca. Full Stack y AI Developer especializado en Python, TypeScript y JavaScript. Descubre proyectos, experiencia y recursos de inteligencia artificial y desarrollo web. Contacta a Mayorcadev para tus soluciones tecnológicas.";
+  "Artificial Intelligence and Fullstack Developer, specializing in Python, TypeScript, and JavaScript, with a focus on technological solutions that drive business growth. I build robust web applications, scalable systems, and custom AI tools that optimize processes and deliver value for businesses of all sizes—from innovative startups to established corporations and AI industry leaders. My projects blend functional design with cutting-edge technology to tackle complex challenges and accelerate digital transformation. Ready to elevate your business with a game-changing solution? Contact MayorcaDev, and let’s shape the future of your company together.";
 const keywords =
-  "mayorcadev, Jeronimo Mayorca, portafolio, desarrollador, full stack, inteligencia artificial, AI, Python, TypeScript, JavaScript, web, developer, Colombia, proyectos, portfolio, mayorca dev";
+  "Jeronimo Mayorca, mayorcadev, mayorca dev, portfolio, desarrollador, full stack, inteligencia artificial, AI, Python, TypeScript, JavaScript, web, developer, Colombia, proyectos";
 
 // Schema.org markup for Person
 const personSchema = {
@@ -18,7 +18,7 @@ const personSchema = {
   "@type": "Person",
   name: "Jeronimo Mayorca",
   url: "https://jeronimomayorca.vercel.app",
-  jobTitle: "Full Stack & AI Developer",
+  jobTitle: "AI & Full Stack Developer",
   sameAs: [
     "https://github.com/jeronimomayorca",
     "https://linkedin.com/in/mayorcajeronimo",
@@ -31,10 +31,6 @@ const personSchema = {
   <meta name="keywords" content={keywords} />
   <meta name="author" content="Jeronimo Mayorca" />
   <meta property="og:site_name" content="MayorcaDev" />
-  <meta
-    name="google-site-verification"
-    content="TU_CODIGO_DE_VERIFICACION_SI_APLICA"
-  />
   <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
 
   <Navbar />
