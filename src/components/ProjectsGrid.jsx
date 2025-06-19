@@ -6,7 +6,7 @@ const projects = [
   
   {
     title: "Tu Técnico de Confianza",
-    description: "Your Trusted Technician is a web platform that makes it easy for users to book services for maintaining, repairing, and upgrading their PCs. Developed with modern technologies and following best coding practices, this application is designed to provide a simple, fast, and efficient user experience.",
+    description: "Tu técnico de Confianza is a web platform that makes it easy for users to book services for maintaining, repairing, and upgrading their PCs. Developed with modern technologies and following best coding practices, this application is designed to provide a simple, fast, and efficient user experience.",
     image: `https://api.microlink.io/?url=https://agendatuservicio.co&screenshot=true&meta=false&embed=screenshot.url`,
     tags: ["Astro", "TypeScript", "Node.js"],
     link: "https://agendatuservicio.co",
