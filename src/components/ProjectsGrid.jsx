@@ -120,9 +120,42 @@ const ProjectCard = memo(function ProjectCard({ project, idx, onExpand }) {
 
 export default function ProjectsGrid() {
   const [expanded, setExpanded] = useState(null);
+  const [modalImageUrl, setModalImageUrl] = useState(null);
+  const [modalImageLoading, setModalImageLoading] = useState(false);
+  const [modalImageError, setModalImageError] = useState(false);
 
-  const onExpand = useCallback((idx) => setExpanded(idx), []);
-  const closeModal = useCallback(() => setExpanded(null), []);
+  // Simple in-memory cache for images
+  const imageCache = ProjectsGrid.imageCache || (ProjectsGrid.imageCache = {});
+
+  const onExpand = useCallback((idx) => {
+    setExpanded(idx);
+    setModalImageError(false);
+    const project = projects[idx];
+    if (imageCache[project.image]) {
+      setModalImageUrl(imageCache[project.image].src);
+      setModalImageLoading(false);
+    } else {
+      setModalImageLoading(true);
+      const img = new window.Image();
+      img.src = project.image;
+      img.onload = () => {
+        imageCache[project.image] = img;
+        setModalImageUrl(img.src);
+        setModalImageLoading(false);
+      };
+      img.onerror = () => {
+        setModalImageError(true);
+        setModalImageLoading(false);
+      };
+    }
+  }, []);
+
+  const closeModal = useCallback(() => {
+    setExpanded(null);
+    setModalImageUrl(null);
+    setModalImageError(false);
+    setModalImageLoading(false);
+  }, []);
   const project = expanded !== null ? projects[expanded] : null;
 
   // Add keyboard listener for Escape key
@@ -165,7 +198,17 @@ export default function ProjectsGrid() {
           <button onClick={closeModal} className="absolute top-2 right-2 sm:top-4 sm:right-4 text-gray-400 hover:text-accent text-3xl sm:text-2xl font-bold p-2 rounded-full hover:bg-accent/10 transition-colors">&times;</button>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
-              <img src={project.image} alt={project.title} className="w-full rounded-xl mb-6 shadow-lg" loading="lazy" width={600} height={400} />
+              {modalImageLoading ? (
+                <div className="w-full h-[400px] flex items-center justify-center bg-gray-800 rounded-xl mb-6 shadow-lg">
+                  <span className="text-gray-400">Cargando imagen...</span>
+                </div>
+              ) : modalImageError ? (
+                <div className="w-full h-[400px] flex items-center justify-center bg-gray-800 rounded-xl mb-6 shadow-lg">
+                  <span className="text-red-400">No se pudo cargar la imagen</span>
+                </div>
+              ) : (
+                <img src={modalImageUrl || project.image} alt={project.title} className="w-full rounded-xl mb-6 shadow-lg" loading="lazy" width={600} height={400} />
+              )}
               <div className="flex flex-wrap gap-2 mb-4">
                 {project.tags.map((tag) => (
                   <span key={tag} className="px-3 py-1 bg-accent/20 rounded-full text-sm font-medium text-accent shadow-glow-sm">
