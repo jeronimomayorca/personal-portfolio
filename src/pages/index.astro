@@ -6,9 +6,11 @@ import ProjectsGrid from "../components/ProjectsGrid.jsx";
 import ExperienceSection from "../components/ExperienceSection.astro";
 import EducationSection from "../components/EducationSection.astro";
 
-const title = "MayorcaDev | Jeronimo Mayorca";
+const title = "MayorcaDev | Jeronimo Mayorca - Full Stack & AI Developer";
 const description =
-  "Hi! I'm Jeronimo, Full Stack and AI Developer specializing in Python, TypeScript, and JavaScript. Explore my projects and experience in web development and artificial intelligence.";
+  "MayorcaDev, el portafolio de Jeronimo Mayorca. Full Stack y AI Developer especializado en Python, TypeScript y JavaScript. Descubre proyectos, experiencia y recursos de inteligencia artificial y desarrollo web. Contacta a Mayorcadev para tus soluciones tecnológicas.";
+const keywords =
+  "mayorcadev, Jeronimo Mayorca, portafolio, desarrollador, full stack, inteligencia artificial, AI, Python, TypeScript, JavaScript, web, developer, Colombia, proyectos, portfolio, mayorca dev";
 
 // Schema.org markup for Person
 const personSchema = {
@@ -26,12 +28,32 @@ const personSchema = {
 ---
 
 <Layout title={title} description={description} image="/og-image.png">
+  <meta name="keywords" content={keywords} />
+  <meta name="author" content="Jeronimo Mayorca" />
+  <meta property="og:site_name" content="MayorcaDev" />
+  <meta
+    name="google-site-verification"
+    content="TU_CODIGO_DE_VERIFICACION_SI_APLICA"
+  />
   <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
 
   <Navbar />
 
   <main>
     <HeroSection />
+
+    <section class="text-center my-8">
+      <h2 class="text-2xl md:text-3xl font-bold text-accent font-sora">
+        Bienvenido a Mayorcadev, el portafolio oficial de Jeronimo Mayorca
+      </h2>
+      <p class="text-lg text-gray-300 mt-2 font-domine">
+        Aquí encontrarás todos los proyectos, experiencia y recursos de <b
+          >MayorcaDev</b
+        > (Jeronimo Mayorca), desarrollador full stack y especialista en inteligencia
+        artificial. Si buscas a <b>mayorcadev</b> o <b>Jeronimo Mayorca</b> en Google,
+        ¡este es el sitio correcto!
+      </p>
+    </section>
 
     <section id="projects" class="py-20" aria-labelledby="projects-heading">
       <h2
