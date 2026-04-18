@@ -1,0 +1,20 @@
+---
+import { getLangFromUrl } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="border-t border-border mt-20">
+  <div class="max-w-4xl mx-auto px-6 py-12 flex flex-col md:flex-row justify-between items-center gap-6">
+    <p class="text-sm text-muted">
+      © {currentYear} Jerónimo Mayorca.
+    </p>
+    
+    <div class="flex items-center gap-6 text-sm text-muted">
+      <a href="mailto:contact@jmayorca.dev" class="hover:text-foreground transition-colors">Email</a>
+      <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="hover:text-foreground transition-colors">GitHub</a>
+      <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="hover:text-foreground transition-colors">LinkedIn</a>
+    </div>
+  </div>
+</footer>
