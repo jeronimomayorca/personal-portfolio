@@ -6,10 +6,23 @@ import {
 	useTranslations,
 	useTranslatedPath,
 } from "../../i18n/utils";
+import TerminalContactForm from "../../components/TerminalContactForm.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
+
+const mainStack = [
+	"TypeScript",
+	"Node.js",
+	"Python",
+	"Go",
+	"PostgreSQL",
+	"Docker",
+	"AWS",
+	"OpenAI API",
+	"Astro",
+];
 ---
 
 <Layout title="AI Engineer">
@@ -98,30 +111,20 @@ const translatePath = useTranslatedPath(lang);
 		</div>
 	</section>
 
-	<section class="pt-32 space-y-8">
-		<div class="flex items-center justify-between">
-			<h2 class="text-2xl font-bold tracking-tight">
-				{t("stack.title")}
-			</h2>
-		</div>
-		<div class="flex flex-wrap gap-3">
-			{
-				[
-					"TypeScript",
-					"Node.js",
-					"Python",
-					"Go",
-					"PostgreSQL",
-					"Docker",
-					"AWS",
-					"OpenAI API",
-					"Astro",
-				].map((tech) => (
-					<span class="px-4 py-1.5 border border-border rounded-full text-sm font-mono text-muted">
-						{tech}
-					</span>
-				))
-			}
+	<TerminalContactForm />
+
+	<section class="pt-32 pb-24 opacity-60 hover:opacity-100 transition-all duration-700">
+		<div class="flex flex-col items-center gap-8">
+			<div class="h-px w-32 bg-gradient-to-r from-transparent via-border to-transparent"></div>
+			<div class="flex flex-wrap justify-center gap-x-8 gap-y-4 px-4 max-w-4xl">
+				{
+					mainStack.map((tech) => (
+						<span class="text-xs font-mono uppercase tracking-[0.3em] text-zinc-500 hover:text-zinc-200 transition-colors cursor-default">
+							{tech}
+						</span>
+					))
+				}
+			</div>
 		</div>
 	</section>
 </Layout>

@@ -53,6 +53,14 @@ export const ui = {
     // Project: VeloSecure
     'projects.velosecure.title': 'VeloSecure',
     'projects.velosecure.desc': 'IoT-enabled bike security system combining GPS tracking, real-time alerts, and a mobile companion app to protect against theft and monitor ride analytics.',
+    
+    // Contact Form
+    'contact.context.label': 'What are we going to build?',
+    'contact.context.placeholder': 'Describe your project or inquiry...',
+    'contact.info.label': 'Email, LinkedIn or Telegram.',
+    'contact.info.placeholder': 'How can I reach you?',
+    'contact.submit': 'execute',
+    'contact.success': '[ DONE ]: Message sent. Response in < 24 hours.',
   },
   es: {
     // Nav
@@ -101,5 +109,13 @@ export const ui = {
     // Project: VeloSecure
     'projects.velosecure.title': 'VeloSecure',
     'projects.velosecure.desc': 'Sistema de seguridad para bicicletas con IoT que combina rastreo GPS, alertas en tiempo real y una app móvil para proteger contra robos y monitorear analíticas de ruta.',
+    
+    // Contact Form
+    'contact.context.label': '¿Qué vamos a construir?',
+    'contact.context.placeholder': 'Describe tu proyecto o consulta...',
+    'contact.info.label': 'Email, LinkedIn o Telegram.',
+    'contact.info.placeholder': '¿Cómo puedo contactarte?',
+    'contact.submit': 'ejecutar',
+    'contact.success': '[ LISTO ]: Mensaje enviado. Respuesta en < 24 horas.',
   },
 } as const;
