@@ -1,34 +1,65 @@
 ---
-import { Github, Linkedin } from 'lucide-react';
-import LanguagePicker from './LanguagePicker.astro';
-import { getLangFromUrl, useTranslations, useTranslatedPath } from '../i18n/utils';
+import { Github, Linkedin } from "lucide-react";
+import LanguagePicker from "./LanguagePicker.astro";
+import {
+  getLangFromUrl,
+  useTranslations,
+  useTranslatedPath,
+} from "../i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
 ---
 
-<nav class="fixed top-0 w-full z-50 border-b border-border bg-background/80 backdrop-blur-md">
+<nav
+  class="fixed top-0 w-full z-50 border-b border-border bg-background/80 backdrop-blur-md"
+>
   <div class="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
-    <a href={translatePath('/')} class="font-mono font-bold text-sm tracking-tighter hover:opacity-70 transition-opacity">
-      JMayorca<span class="text-muted">.dev</span>
-    </a>
-    
+    <a
+      href={translatePath("/")}
+      class="font-mono font-bold text-sm tracking-tighter hover:opacity-70 transition-opacity"
+    >
+      >jeronimo<span class="text-muted">@dev</span>:~$</a
+    >
+
     <div class="flex items-center gap-6">
-      <div class="hidden md:flex items-center gap-6 text-sm font-medium text-muted">
-        <a href={translatePath('/projects')} class="hover:text-foreground transition-colors">{t('nav.projects')}</a>
-        <a href={translatePath('/experience')} class="hover:text-foreground transition-colors">{t('nav.experience')}</a>
-        <a href={translatePath('/blog')} class="hover:text-foreground transition-colors">{t('nav.blog')}</a>
+      <div
+        class="hidden md:flex items-center gap-6 text-sm font-medium text-muted"
+      >
+        <a
+          href={translatePath("/projects")}
+          class="hover:text-foreground transition-colors">{t("nav.projects")}</a
+        >
+        <a
+          href={translatePath("/experience")}
+          class="hover:text-foreground transition-colors"
+          >{t("nav.experience")}</a
+        >
+        <a
+          href={translatePath("/blog")}
+          class="hover:text-foreground transition-colors">{t("nav.blog")}</a
+        >
       </div>
-      
+
       <div class="h-4 w-[1px] bg-border hidden md:block"></div>
-      
+
       <div class="flex items-center gap-4">
         <LanguagePicker />
-        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="text-muted hover:text-foreground transition-colors">
+        <a
+          href="https://github.com/jeronimomayorcaar"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-muted hover:text-foreground transition-colors"
+        >
           <Github size={18} />
         </a>
-        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="text-muted hover:text-foreground transition-colors">
+        <a
+          href="https://linkedin.com/in/jeronimomayorca"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-muted hover:text-foreground transition-colors"
+        >
           <Linkedin size={18} />
         </a>
       </div>

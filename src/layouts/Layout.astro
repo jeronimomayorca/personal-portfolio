@@ -9,33 +9,99 @@ interface Props {
 	description?: string;
 }
 
+const lang = getLangFromUrl(Astro.url);
+
+const defaultDescriptions = {
+  en: 'Jerónimo Mayorca — Senior Software Engineer specializing in AI, Backend Engineering, and Cloud Architecture. 5+ years building scalable systems, LLM integrations, and data-driven solutions.',
+  es: 'Jerónimo Mayorca — Ingeniero de Software Senior especializado en IA, Backend Engineering y Arquitectura Cloud. +5 años construyendo sistemas escalables, integraciones LLM y soluciones orientadas a datos.',
+};
+
 const { 
   title, 
-  description = "Senior Developer con 5 años de experiencia especializado en IA y Backend Engineering." 
+  description = defaultDescriptions[lang] || defaultDescriptions.en
 } = Astro.props;
 
-const lang = getLangFromUrl(Astro.url);
+const siteUrl = 'https://jeronimomayorca.vercel.app';
+const canonicalPath = Astro.url.pathname;
+const canonicalUrl = `${siteUrl}${canonicalPath}`;
+
+// Build hreflang alternate URLs
+const pathWithoutLang = canonicalPath.replace(/^\/es/, '') || '/';
+const enUrl = `${siteUrl}${pathWithoutLang}`;
+const esUrl = `${siteUrl}/es${pathWithoutLang === '/' ? '/' : pathWithoutLang}`;
+
+const fullTitle = `${title} | Jerónimo Mayorca`;
+const ogImage = `${siteUrl}/og-image.png`;
 ---
 
 <!doctype html>
 <html lang={lang} class="dark">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
 		<meta name="generator" content={Astro.generator} />
 		
-		<!-- SEO -->
-		<title>{title} | Jerónimo Mayorca</title>
+		<!-- ═══ Primary SEO ═══ -->
+		<title>{fullTitle}</title>
 		<meta name="description" content={description} />
-		<meta property="og:title" content={title} />
+		<meta name="author" content="Jerónimo Mayorca" />
+		<meta name="robots" content="index, follow" />
+		<meta name="keywords" content="Jeronimo Mayorca, jeronimo mayorca, jeronimomayorca, mayorcajeronimo, jeronimomayorcaar, Mayorcadev, mayorcadev, JMayorca, AI Developer, software development, Backend Engineer, Full Stack Developer, Python Developer, Machine Learning Engineer, LLM Integration, Cloud Architect, NLP Engineer, Data Engineer, FastAPI, Node.js, TypeScript, React, desarrollador de software, ingeniero de software, desarrollador IA" />
+		<link rel="canonical" href={canonicalUrl} />
+
+		<!-- ═══ Internationalization ═══ -->
+		<link rel="alternate" hreflang="en" href={enUrl} />
+		<link rel="alternate" hreflang="es" href={esUrl} />
+		<link rel="alternate" hreflang="x-default" href={enUrl} />
+
+		<!-- ═══ OpenGraph / Social ═══ -->
+		<meta property="og:title" content={fullTitle} />
 		<meta property="og:description" content={description} />
 		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonicalUrl} />
+		<meta property="og:image" content={ogImage} />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:alt" content="Jerónimo Mayorca — AI & Backend Engineer" />
+		<meta property="og:site_name" content="Jerónimo Mayorca | Portfolio" />
+		<meta property="og:locale" content={lang === 'es' ? 'es_AR' : 'en_US'} />
+		<meta property="og:locale:alternate" content={lang === 'es' ? 'en_US' : 'es_AR'} />
+
+		<!-- ═══ Twitter Card ═══ -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={fullTitle} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImage} />
+		<meta name="twitter:image:alt" content="Jerónimo Mayorca — AI & Backend Engineer" />
 		
-		<!-- Fonts -->
+		<!-- ═══ Fonts ═══ -->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+		<!-- ═══ Structured Data (JSON-LD) ═══ -->
+		<script type="application/ld+json" set:html={JSON.stringify({
+			"@context": "https://schema.org",
+			"@type": "Person",
+			"name": "Jerónimo Mayorca",
+			"alternateName": ["jeronimomayorca", "mayorcajeronimo", "jeronimomayorcaar", "Mayorcadev", "mayorcadev", "JMayorca"],
+			"url": siteUrl,
+			"image": ogImage,
+			"jobTitle": "Senior Software Engineer",
+			"description": defaultDescriptions.en,
+			"knowsAbout": [
+				"Artificial Intelligence", "Machine Learning", "Backend Engineering", 
+				"Cloud Architecture", "Python", "TypeScript", "Node.js", "React",
+				"FastAPI", "LLM Integration", "NLP", "Data Engineering",
+				"PostgreSQL", "Docker", "AWS", "Go"
+			],
+			"sameAs": [
+				"https://github.com/jeronimomayorcaar",
+				"https://linkedin.com/in/jeronimomayorca",
+				"https://jeronimomayorca.vercel.app"
+			]
+		})} />
 	</head>
 	<body class="bg-background text-foreground antialiased font-sans selection:bg-accent selection:text-background">
 		<Navbar />
@@ -53,6 +119,19 @@ const lang = getLangFromUrl(Astro.url);
 	
 	html {
 		scroll-behavior: smooth;
+	}
+
+	/* Visually hidden but crawlable by search engines */
+	.sr-only {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border-width: 0;
 	}
 
 	::-webkit-scrollbar {
