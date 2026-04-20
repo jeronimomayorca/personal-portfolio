@@ -1,10 +1,26 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-import tailwind from '@astrojs/tailwind';
+import tailwindcss from '@tailwindcss/vite';
 import react from '@astrojs/react';
+import mdx from '@astrojs/mdx';
+import sitemap from '@astrojs/sitemap';
+
+import vercel from '@astrojs/vercel';
 
 // https://astro.build/config
 export default defineConfig({
-    integrations: [tailwind(), react()],
+    integrations: [react(), mdx(), sitemap()],
+    adapter: vercel(),
+    output: 'static',
+    vite: {
+        plugins: [tailwindcss()],
+    },
     site: 'https://jeronimomayorca.vercel.app',
+    i18n: {
+        defaultLocale: "en",
+        locales: ["en", "es"],
+        routing: {
+            prefixDefaultLocale: false
+        }
+    }
 });

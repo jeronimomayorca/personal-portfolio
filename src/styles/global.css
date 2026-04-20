@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+@theme {
+    /* Colors */
+    --color-background: #0a0a0a;
+    --color-foreground: #ededed;
+    --color-border: #27272a;
+    --color-muted: #a1a1aa;
+    --color-accent: #fafafa;
+
+    /* Fonts */
+    --font-family-sans: 'Inter', system-ui, sans-serif;
+    --font-family-mono: 'JetBrains Mono', monospace;
+}
+
+/* Dark mode via class strategy */
+@variant dark (&:where(.dark, .dark *));

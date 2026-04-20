@@ -1,152 +1,152 @@
 ---
-import MobileMenu from "../components/MobileMenu.astro";
+import '../styles/global.css';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import { getLangFromUrl } from '../i18n/utils';
 
 interface Props {
-  title: string;
-  description?: string;
-  image?: string;
-  canonicalURL?: string;
+	title: string;
+	description?: string;
+	fullWidth?: boolean;
 }
 
-const {
-  title = "MayorcaDev",
-  description = "I'm Jerónimo Mayorca - MayorcaDev, a developer with expertise in Python and web technologies like TypeScript and JavaScript. I specialize in applied artificial intelligence — from innovative personal projects to custom AI integrations for businesses. Discover my high-impact tech solutions.",
-  image = "/og-image.png",
-  canonicalURL = new URL(Astro.url.pathname, Astro.site).toString(),
+const lang = getLangFromUrl(Astro.url);
+
+const defaultDescriptions = {
+  en: 'Jerónimo Mayorca — Senior Software Engineer specializing in AI, Backend Engineering, and Cloud Architecture. 5+ years building scalable systems, LLM integrations, and data-driven solutions.',
+  es: 'Jerónimo Mayorca — Ingeniero de Software Senior especializado en IA, Backend Engineering y Arquitectura Cloud. +5 años construyendo sistemas escalables, integraciones LLM y soluciones orientadas a datos.',
+};
+
+const { 
+  title, 
+  description = defaultDescriptions[lang] || defaultDescriptions.en,
+  fullWidth = false
 } = Astro.props;
+
+const siteUrl = 'https://jeronimomayorca.vercel.app';
+const canonicalPath = Astro.url.pathname;
+const canonicalUrl = `${siteUrl}${canonicalPath}`;
+
+// Build hreflang alternate URLs
+const pathWithoutLang = canonicalPath.replace(/^\/es/, '') || '/';
+const enUrl = `${siteUrl}${pathWithoutLang}`;
+const esUrl = `${siteUrl}/es${pathWithoutLang === '/' ? '/' : pathWithoutLang}`;
+
+const fullTitle = `${title} | Jerónimo Mayorca`;
+const ogImage = `${siteUrl}/og-image.png`;
 ---
 
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.png" />
-    <meta name="generator" content={Astro.generator} />
+<html lang={lang} class="dark">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<meta name="generator" content={Astro.generator} />
+		
+		<!-- ═══ Primary SEO ═══ -->
+		<title>{fullTitle}</title>
+		<meta name="description" content={description} />
+		<meta name="author" content="Jerónimo Mayorca" />
+		<meta name="robots" content="index, follow" />
+		<meta name="keywords" content="Jeronimo Mayorca, jeronimo mayorca, jeronimomayorca, mayorcajeronimo, jeronimomayorcaar, Mayorcadev, mayorcadev, JMayorca, AI Developer, software development, Backend Engineer, Full Stack Developer, Python Developer, Machine Learning Engineer, LLM Integration, Cloud Architect, NLP Engineer, Data Engineer, FastAPI, Node.js, TypeScript, React, desarrollador de software, ingeniero de software, desarrollador IA" />
+		<link rel="canonical" href={canonicalUrl} />
 
-    <!-- Primary Meta Tags -->
-    <title>{title}</title>
-    <meta name="title" content={title} />
-    <meta name="description" content={description} />
+		<!-- ═══ Internationalization ═══ -->
+		<link rel="alternate" hreflang="en" href={enUrl} />
+		<link rel="alternate" hreflang="es" href={esUrl} />
+		<link rel="alternate" hreflang="x-default" href={enUrl} />
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={canonicalURL} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:image" content={image} />
+		<!-- ═══ OpenGraph / Social ═══ -->
+		<meta property="og:title" content={fullTitle} />
+		<meta property="og:description" content={description} />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonicalUrl} />
+		<meta property="og:image" content={ogImage} />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:alt" content="Jerónimo Mayorca — AI & Backend Engineer" />
+		<meta property="og:site_name" content="Jerónimo Mayorca | Portfolio" />
+		<meta property="og:locale" content={lang === 'es' ? 'es_AR' : 'en_US'} />
+		<meta property="og:locale:alternate" content={lang === 'es' ? 'en_US' : 'es_AR'} />
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={canonicalURL} />
-    <meta property="twitter:title" content={title} />
-    <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={image} />
+		<!-- ═══ Twitter Card ═══ -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={fullTitle} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImage} />
+		<meta name="twitter:image:alt" content="Jerónimo Mayorca — AI & Backend Engineer" />
+		
+		<!-- ═══ Fonts ═══ -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-    <!-- Canonical URL -->
-    <link rel="canonical" href={canonicalURL} />
-
-    <!-- Preconnect to external resources -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Domine:wght@400;700&family=Sora:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body class="bg-primary text-white min-h-screen universe-bg">
-    <header class="fixed w-full bg-secondary/80 backdrop-blur-sm z-50">
-      <MobileMenu />
-    </header>
-
-    <main class="pt-20">
-      <slot />
-    </main>
-
-    <footer class="bg-secondary mt-20 py-8">
-      <div class="container mx-auto px-4 text-center">
-        <p class="font-domine text-lg">
-          &copy; {new Date().getFullYear()} Mayorcadev. All rights reserved.
-        </p>
-      </div>
-    </footer>
-  </body>
+		<!-- ═══ Structured Data (JSON-LD) ═══ -->
+		<script type="application/ld+json" set:html={JSON.stringify({
+			"@context": "https://schema.org",
+			"@type": "Person",
+			"name": "Jerónimo Mayorca",
+			"alternateName": ["jeronimomayorca", "mayorcajeronimo", "jeronimomayorcaar", "Mayorcadev", "mayorcadev", "JMayorca"],
+			"url": siteUrl,
+			"image": ogImage,
+			"jobTitle": "Senior Software Engineer",
+			"description": defaultDescriptions.en,
+			"knowsAbout": [
+				"Artificial Intelligence", "Machine Learning", "Backend Engineering", 
+				"Cloud Architecture", "Python", "TypeScript", "Node.js", "React",
+				"FastAPI", "LLM Integration", "NLP", "Data Engineering",
+				"PostgreSQL", "Docker", "AWS", "Go"
+			],
+			"sameAs": [
+				"https://github.com/jeronimomayorcaar",
+				"https://linkedin.com/in/jeronimomayorca",
+				"https://jeronimomayorca.vercel.app"
+			]
+		})} />
+	</head>
+	<body class="bg-background text-foreground antialiased font-sans selection:bg-accent selection:text-background">
+		<Navbar />
+		<main class={fullWidth ? "w-full min-h-screen" : "max-w-4xl mx-auto px-6 pt-32 min-h-screen"}>
+			<slot />
+		</main>
+		<Footer />
+	</body>
 </html>
 
 <style is:global>
-  :root {
-    --accent: 0, 255, 127;
-    --accent-light: 57, 255, 157;
-    --accent-dark: 0, 200, 100;
-    --accent-gradient: linear-gradient(
-      45deg,
-      rgb(var(--accent)),
-      rgb(var(--accent-light)) 30%,
-      white 60%
-    );
-  }
+	:root {
+		color-scheme: dark;
+	}
+	
+	html {
+		scroll-behavior: smooth;
+	}
 
-  html {
-    font-family: system-ui, sans-serif;
-    background: #0f172a;
-    background-size: 224px;
-  }
+	/* Visually hidden but crawlable by search engines */
+	.sr-only {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border-width: 0;
+	}
 
-  .universe-bg {
-    background: radial-gradient(
-        ellipse at 60% 10%,
-        rgba(59, 130, 246, 0.1) 0%,
-        transparent 70%
-      ),
-      radial-gradient(
-        ellipse at 20% 80%,
-        rgba(96, 165, 250, 0.1) 0%,
-        transparent 70%
-      ),
-      linear-gradient(120deg, #0f172a 0%, #1e293b 100%);
-    position: relative;
-    overflow-x: hidden;
-  }
-  .universe-bg::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    background-image: repeating-radial-gradient(
-        circle at 10% 20%,
-        rgba(255, 255, 255, 0.08) 0 1px,
-        transparent 1px 100px
-      ),
-      repeating-radial-gradient(
-        circle at 80% 70%,
-        rgba(255, 255, 255, 0.06) 0 1px,
-        transparent 1px 120px
-      ),
-      repeating-radial-gradient(
-        circle at 50% 50%,
-        rgba(255, 255, 255, 0.1) 0 1.2px,
-        transparent 1.2px 160px
-      );
-    background-size: cover;
-    opacity: 0.7;
-  }
-
-  .shadow-glow-sm {
-    box-shadow:
-      0 0 5px rgba(var(--accent), 0.5),
-      0 0 10px rgba(var(--accent), 0.3);
-  }
-
-  code {
-    font-family:
-      Menlo,
-      Monaco,
-      Lucida Console,
-      Liberation Mono,
-      DejaVu Sans Mono,
-      Bitstream Vera Sans Mono,
-      Courier New,
-      monospace;
-  }
+	::-webkit-scrollbar {
+		width: 8px;
+	}
+	::-webkit-scrollbar-track {
+		background: #0a0a0a;
+	}
+	::-webkit-scrollbar-thumb {
+		background: #27272a;
+		border-radius: 4px;
+	}
+	::-webkit-scrollbar-thumb:hover {
+		background: #3f3f46;
+	}
 </style>

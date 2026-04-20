@@ -1,0 +1,36 @@
+---
+import { languages } from '../i18n/ui';
+import { getLangFromUrl } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const currentPath = Astro.url.pathname;
+
+function getPath(targetLang: string) {
+  if (targetLang === 'en') {
+     return currentPath.replace(/^\/es/, '') || '/';
+  }
+  if (targetLang === 'es') {
+     if (currentPath === '/') return '/es/';
+     if (!currentPath.startsWith('/es')) return '/es' + currentPath;
+     return currentPath;
+  }
+  return '/';
+}
+---
+
+<div class="flex items-center gap-2 text-xs font-mono">
+  {
+    Object.entries(languages).map(([l, label]) => (
+      <a
+        href={getPath(l)}
+        class={`px-2 py-1 transition-colors ${
+          l === lang 
+            ? 'text-foreground font-bold border-b border-foreground' 
+            : 'text-muted hover:text-foreground'
+        }`}
+      >
+        {l.toUpperCase()}
+      </a>
+    ))
+  }
+</div>
