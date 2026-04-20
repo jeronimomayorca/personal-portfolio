@@ -5,46 +5,60 @@ import { getLangFromUrl } from '../../i18n/utils';
 const lang = getLangFromUrl(Astro.url);
 
 const milestones = [
-  {
-    date: "2023 - Presente",
-    role: "Lead AI Architect",
-    company: "Nexus AI Solutions",
-    description: "Desarrollo de lógica multi-agente para la resolución colaborativa de incidencias técnicas sin intervención humana. Orquestación de una flota de agentes autónomos que interactúan fluidamente con APIs legacy.",
-    metric: "10x Eficiencia Operativa",
-    skills: ["Python", "LangChain", "OpenAI", "FastAPI"]
-  },
-  {
-    date: "2022 - 2023",
-    role: "Senior ML Engineer",
-    company: "Global Retail Tech",
-    description: "Integración de LangChain y OpenAI GPT-4 para agentes conversacionales autónomos con contexto de cliente. Diseño de un sistema RAG (Retrieval-Augmented Generation) de baja latencia para procesar millones de registros.",
-    metric: "60% Tasa de Desvío",
-    skills: ["GPT-4", "Vector DBs", "AWS", "TypeScript"]
-  },
-  {
-    date: "2021 - 2022",
-    role: "Data Engineering Lead",
-    company: "FinTech Analytics",
-    description: "Migración de batch a streaming con Kafka y Airflow. Rediseño arquitectónico para procesamiento en tiempo real, garantizando latencia sub-segundo para la detección de anomalías en transacciones financieras.",
-    metric: "40% Reducción de Costos",
-    skills: ["Kafka", "Airflow", "Python", "Snowflake"]
-  },
-  {
-    date: "2020 - 2021",
-    role: "Backend Engineer",
-    company: "HealthCore Systems",
-    description: "Sustitución de modelos legacy por DistilBERT fine-tuneado. Optimización de inferencia en edge nodes usando ONNX y TensorRT, reduciendo drásticamente el consumo de memoria y mejorando la precisión.",
-    metric: "Inferencia 3x más rápida",
-    skills: ["PyTorch", "HuggingFace", "ONNX", "Docker"]
-  },
-  {
-    date: "2019 - 2020",
-    role: "Cloud Architect",
-    company: "SaaS Builders Inc.",
-    description: "Transición de infraestructura monolítica a AWS Serverless (Lambdas, DynamoDB). Implementación de Infraestructura como Código con Terraform para asegurar entornos reproducibles y escalables.",
-    metric: "99.99% Uptime",
-    skills: ["AWS Lambda", "DynamoDB", "Terraform", "CI/CD"]
-  }
+    {
+      date: "Mar 2026 — Presente",
+      role: "Founder & Product Engineer",
+      company: "Lex AI",
+      url: "#",
+      description: "Plataforma legal con AI Interviewer que automatiza el intake de clientes garantizando 100% de completitud. Pipeline RAG sobre ChromaDB con búsqueda semántica contra precedentes y estatutos. Reducción del 85% en recolección manual de datos.",
+      skills: ["Python", "ChromaDB", "RAG", "LLM"]
+    },
+    {
+      date: "Feb 2026 — Presente",
+      role: "Founder & AI Developer",
+      company: "VigIA",
+      url: "#",
+      description: "Sistema de vigilancia con YOLOv8 que clasifica amenazas reales vs. ruido ambiental en streams de cámaras IP. Detección por zonas con alertas automatizadas vía API y latencia mínima.",
+      skills: ["YOLOv8", "Computer Vision", "Python", "Deep Learning"]
+    },
+    {
+      date: "Ago 2025 — Feb 2026 · 7 meses",
+      role: "Ejecutivo de Marketing",
+      company: "EVOLVE your English",
+      url: "https://evolveyourenglish.com/",
+      description: "Adquisición de clientes y posicionamiento de mercado. Traducción de specs técnicas en propuestas de valor, habilidades aplicadas directamente al GTM de VigIA y Lex AI.",
+      skills: ["Marketing", "Negociación", "GTM"]
+    },
+    {
+      date: "Jul 2025 — Sep 2025 · 3 meses",
+      role: "Fullstack Developer",
+      company: "Sahara Essence",
+      url: "https://saharaessence.vercel.app",
+      description: "E-commerce de lujo con AI Fragrance Advisor: chatbot LLM + RAG sobre inventario Supabase en tiempo real. UI/UX premium con respuestas sub-segundo.",
+      skills: ["RAG", "Supabase", "LLM", "E-commerce"]
+    },
+    {
+      date: "Sep 2024 — Sep 2025 · 1 año",
+      role: "Profesor Superior",
+      company: "Colegiatura del Café",
+      description: "Docencia en algoritmos, programación básica, hardware-software integration y Excel avanzado. Simplificación de conceptos de arquitectura para estudiantes de nivel superior.",
+      skills: ["Algoritmos", "Hardware", "Excel"]
+    },
+    {
+      date: "Ene 2025 — Feb 2025 · 2 meses",
+      role: "Back End Developer",
+      company: "Xarasoft S.A.S",
+      description: "Backend para ERP escolar: algoritmos de ponderación académica dinámica e interfaces AJAX con consistencia de datos en tiempo real.",
+      skills: ["PHP", "MySQL", "AJAX", "Bootstrap"]
+    },
+    {
+      date: "Jun 2023 — Mar 2024 · 10 meses",
+      role: "Fullstack Developer",
+      company: "Humphrey Consulting Group",
+      url: "https://humphreysoft.com/",
+      description: "Integración ZOHO con 25% menos latencia, módulo de cumplimiento DIAN con Frappe y auditoría cloud que redujo costos un 40%. Refactoring de 30+ endpoints críticos en Python.",
+      skills: ["Python", "Docker", "SQL", "Frappe", "ZOHO"]
+    }
 ];
 ---
 
@@ -83,17 +97,32 @@ const milestones = [
                   <!-- Decorative scanning effect -->
                   <div class="absolute inset-0 bg-gradient-to-b from-transparent via-foreground/5 to-transparent h-[200%] -translate-y-[150%] group-hover:animate-scan pointer-events-none"></div>
                   
-                  <!-- Header: Date & Metric -->
+                  <!-- Header: Date -->
                   <div class="flex flex-wrap justify-between items-center gap-4 mb-6">
                     <span class="node-date text-foreground font-mono text-sm tracking-widest uppercase font-semibold">{m.date}</span>
-                    <span class="node-metric px-4 py-1.5 bg-foreground/10 border border-foreground/10 text-foreground text-xs font-mono font-bold rounded-full">{m.metric}</span>
                   </div>
                   
                   <!-- Title & Role -->
                   <div class="mb-6">
                     <h2 class="node-title text-3xl md:text-4xl font-extrabold tracking-tight text-foreground mb-3">{m.role}</h2>
                     <h3 class="node-company text-lg md:text-xl text-muted font-medium flex items-center gap-3">
-                      <span class="w-6 h-[1px] bg-muted/50"></span> {m.company}
+                      <span class="w-6 h-[1px] bg-muted/50"></span> 
+                      {m.url ? (
+                        <a 
+                          href={m.url} 
+                          target={m.url === '#' ? '_self' : '_blank'} 
+                          rel="noopener noreferrer" 
+                          class="group/link flex items-center gap-1 hover:text-foreground transition-colors overflow-hidden"
+                        >
+                          {m.company}
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 -translate-x-2 translate-y-1 group-hover/link:opacity-100 group-hover/link:translate-x-0 group-hover/link:-translate-y-0.5 transition-all duration-300">
+                            <line x1="7" y1="17" x2="17" y2="7"></line>
+                            <polyline points="7 7 17 7 17 17"></polyline>
+                          </svg>
+                        </a>
+                      ) : (
+                        <span>{m.company}</span>
+                      )}
                     </h3>
                   </div>
                   
@@ -159,9 +188,9 @@ const milestones = [
     const droneContainer = document.querySelector("#drone-container");
     const cameraWrapper = document.querySelector("#camera-wrapper");
     const mapLayer = document.querySelector("#map-layer");
-    const nodes = gsap.utils.toArray(".node");
-    const dots = gsap.utils.toArray(".node-dot");
-    const dotsInner = gsap.utils.toArray(".dot-inner");
+    const nodes = gsap.utils.toArray<HTMLElement>(".node");
+    const dots = gsap.utils.toArray<HTMLElement>(".node-dot");
+    const dotsInner = gsap.utils.toArray<HTMLElement>(".dot-inner");
     const activeCable = document.querySelector("#active-cable");
     const scrollHint = document.querySelector("#scroll-hint");
 
