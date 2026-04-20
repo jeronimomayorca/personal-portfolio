@@ -1,0 +1,289 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getLangFromUrl } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+
+const milestones = [
+  {
+    date: "2023 - Presente",
+    role: "Lead AI Architect",
+    company: "Nexus AI Solutions",
+    description: "Desarrollo de lógica multi-agente para la resolución colaborativa de incidencias técnicas sin intervención humana. Orquestación de una flota de agentes autónomos que interactúan fluidamente con APIs legacy.",
+    metric: "10x Eficiencia Operativa",
+    skills: ["Python", "LangChain", "OpenAI", "FastAPI"]
+  },
+  {
+    date: "2022 - 2023",
+    role: "Senior ML Engineer",
+    company: "Global Retail Tech",
+    description: "Integración de LangChain y OpenAI GPT-4 para agentes conversacionales autónomos con contexto de cliente. Diseño de un sistema RAG (Retrieval-Augmented Generation) de baja latencia para procesar millones de registros.",
+    metric: "60% Tasa de Desvío",
+    skills: ["GPT-4", "Vector DBs", "AWS", "TypeScript"]
+  },
+  {
+    date: "2021 - 2022",
+    role: "Data Engineering Lead",
+    company: "FinTech Analytics",
+    description: "Migración de batch a streaming con Kafka y Airflow. Rediseño arquitectónico para procesamiento en tiempo real, garantizando latencia sub-segundo para la detección de anomalías en transacciones financieras.",
+    metric: "40% Reducción de Costos",
+    skills: ["Kafka", "Airflow", "Python", "Snowflake"]
+  },
+  {
+    date: "2020 - 2021",
+    role: "Backend Engineer",
+    company: "HealthCore Systems",
+    description: "Sustitución de modelos legacy por DistilBERT fine-tuneado. Optimización de inferencia en edge nodes usando ONNX y TensorRT, reduciendo drásticamente el consumo de memoria y mejorando la precisión.",
+    metric: "Inferencia 3x más rápida",
+    skills: ["PyTorch", "HuggingFace", "ONNX", "Docker"]
+  },
+  {
+    date: "2019 - 2020",
+    role: "Cloud Architect",
+    company: "SaaS Builders Inc.",
+    description: "Transición de infraestructura monolítica a AWS Serverless (Lambdas, DynamoDB). Implementación de Infraestructura como Código con Terraform para asegurar entornos reproducibles y escalables.",
+    metric: "99.99% Uptime",
+    skills: ["AWS Lambda", "DynamoDB", "Terraform", "CI/CD"]
+  }
+];
+---
+
+<Layout title="Experiencia" fullWidth={true}>
+  <div id="drone-container" class="w-full relative h-screen overflow-hidden bg-background [perspective:1500px]">
+    
+    <div id="camera-wrapper" class="w-full h-full absolute top-0 left-0 origin-center [transform-style:preserve-3d]">
+      
+      <!-- Tech Grid Background -->
+      <div class="tech-grid absolute inset-[-50%] w-[200%] h-[200%] opacity-30 z-0 pointer-events-none"></div>
+
+      <div id="map-layer" class="w-full absolute top-0 left-0 z-10">
+        
+        <!-- Physical cable on the ground -->
+        <div class="absolute left-8 md:left-1/2 top-[50vh] w-1 bg-white/10 md:-translate-x-1/2 z-0 rounded-full" style={`height: ${(milestones.length - 1) * 100}vh;`}></div>
+        <!-- Active light beam -->
+        <div id="active-cable" class="absolute left-8 md:left-1/2 top-[50vh] w-1 bg-foreground shadow-[0_0_20px_2px_rgba(255,255,255,0.6)] md:-translate-x-1/2 z-10 rounded-full" style="height: 0px;"></div>
+
+        {milestones.map((m, i) => (
+          <div class="w-full h-screen flex items-center justify-center relative">
+            
+            <!-- Connection point -->
+            <div class="absolute left-8 md:left-1/2 top-1/2 w-6 h-6 bg-background border-[3px] border-border/50 rounded-full -translate-x-1/2 -translate-y-1/2 z-20 node-dot transition-colors duration-300 flex items-center justify-center">
+              <div class="w-2.5 h-2.5 bg-foreground rounded-full opacity-0 scale-0 dot-inner shadow-[0_0_10px_rgba(255,255,255,0.8)]"></div>
+            </div>
+
+            <!-- Horizontal Line connector (Desktop only) -->
+            <div class={`hidden md:block absolute top-1/2 h-[2px] bg-gradient-to-r ${i % 2 === 0 ? 'from-border/50 to-transparent left-1/2 w-24' : 'from-transparent to-border/50 right-1/2 w-24'} -translate-y-1/2 z-0`}></div>
+
+            <div class={`w-full max-w-6xl mx-auto flex items-center h-full ${i % 2 === 0 ? 'justify-end pl-20 pr-6 md:pl-0 md:pr-24' : 'justify-start pl-20 pr-6 md:pl-24'}`}>
+              
+              <!-- Card -->
+              <div class="node w-full md:w-[48%] relative z-30 [perspective:1000px]">
+                <div class="node-card opacity-0 bg-background/80 border border-border backdrop-blur-2xl p-8 md:p-10 rounded-3xl shadow-2xl [transform-style:preserve-3d] overflow-hidden group hover:border-foreground/30 transition-colors duration-500">
+                  
+                  <!-- Decorative scanning effect -->
+                  <div class="absolute inset-0 bg-gradient-to-b from-transparent via-foreground/5 to-transparent h-[200%] -translate-y-[150%] group-hover:animate-scan pointer-events-none"></div>
+                  
+                  <!-- Header: Date & Metric -->
+                  <div class="flex flex-wrap justify-between items-center gap-4 mb-6">
+                    <span class="node-date text-foreground font-mono text-sm tracking-widest uppercase font-semibold">{m.date}</span>
+                    <span class="node-metric px-4 py-1.5 bg-foreground/10 border border-foreground/10 text-foreground text-xs font-mono font-bold rounded-full">{m.metric}</span>
+                  </div>
+                  
+                  <!-- Title & Role -->
+                  <div class="mb-6">
+                    <h2 class="node-title text-3xl md:text-4xl font-extrabold tracking-tight text-foreground mb-3">{m.role}</h2>
+                    <h3 class="node-company text-lg md:text-xl text-muted font-medium flex items-center gap-3">
+                      <span class="w-6 h-[1px] bg-muted/50"></span> {m.company}
+                    </h3>
+                  </div>
+                  
+                  <!-- Description -->
+                  <p class="node-desc text-base md:text-lg text-muted/90 leading-relaxed mb-8">
+                    {m.description}
+                  </p>
+                  
+                  <!-- Skills -->
+                  <div class="node-skills flex flex-wrap gap-2">
+                    {m.skills.map(skill => (
+                      <span class="px-3 py-1.5 border border-border/50 bg-background/50 rounded-lg text-xs font-mono text-muted/80">{skill}</span>
+                    ))}
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+    
+    <!-- Scroll Hint -->
+    <div id="scroll-hint" class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center z-40">
+      <span class="text-sm md:text-base text-foreground tracking-[0.3em] uppercase font-extrabold mb-2">Desliza</span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="animate-bounce text-foreground mt-2">
+        <path d="M12 5v14"/>
+        <path d="m19 12-7 7-7-7"/>
+      </svg>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .tech-grid {
+    background-size: 60px 60px;
+    background-image: 
+      linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+  }
+  
+  @keyframes scan {
+    0% { transform: translateY(-150%); }
+    100% { transform: translateY(50%); }
+  }
+  
+  .animate-scan {
+    animation: scan 3s linear infinite;
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const initExperience = () => {
+    const droneContainer = document.querySelector("#drone-container");
+    const cameraWrapper = document.querySelector("#camera-wrapper");
+    const mapLayer = document.querySelector("#map-layer");
+    const nodes = gsap.utils.toArray(".node");
+    const dots = gsap.utils.toArray(".node-dot");
+    const dotsInner = gsap.utils.toArray(".dot-inner");
+    const activeCable = document.querySelector("#active-cable");
+    const scrollHint = document.querySelector("#scroll-hint");
+
+    if (!droneContainer || nodes.length === 0) return;
+
+    ScrollTrigger.getAll().forEach(t => t.kill());
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: droneContainer,
+        start: "top top",
+        end: `+=${nodes.length * 150}%`,
+        pin: true,
+        scrub: 1.5,
+      }
+    });
+
+    // --- Intro Sequence ---
+    tl.addLabel("intro");
+    
+    tl.fromTo(cameraWrapper, 
+      { rotationX: 45, scale: 0.7, opacity: 0, y: 100 },
+      { rotationX: 10, scale: 0.95, opacity: 1, y: 0, duration: 2, ease: "power2.out" }, 
+      "intro"
+    );
+    
+    tl.to(scrollHint, { opacity: 0, duration: 1 }, "intro+=1");
+
+    const node0Card = nodes[0].querySelector('.node-card');
+    const node0Elems = nodes[0].querySelectorAll('.node-date, .node-metric, .node-title, .node-company, .node-desc, .node-skills span');
+    
+    tl.to(dots[0], { borderColor: "#ededed", duration: 0.5 }, "intro+=1");
+    tl.to(dotsInner[0], { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(2)" }, "intro+=1");
+
+    tl.fromTo(node0Card,
+      { opacity: 0, y: 100, rotationX: 15, scale: 0.95 },
+      { opacity: 1, y: 0, rotationX: 0, scale: 1, duration: 1.5, ease: "power3.out" },
+      "intro+=1"
+    );
+    tl.fromTo(node0Elems,
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, stagger: 0.05, duration: 0.8, ease: "back.out(1.5)" },
+      "intro+=1.2"
+    );
+
+    tl.addLabel("node-0");
+
+    // Loop through remaining nodes
+    for (let i = 1; i < nodes.length; i++) {
+      const prevCard = nodes[i - 1].querySelector('.node-card');
+      const currCard = nodes[i].querySelector('.node-card');
+      const currElems = nodes[i].querySelectorAll('.node-date, .node-metric, .node-title, .node-company, .node-desc, .node-skills span');
+      
+      const startTime = `node-${i - 1}`;
+      
+      // Move map
+      tl.to(mapLayer, {
+        y: `-${i * 100}vh`,
+        duration: 3,
+        ease: "power1.inOut"
+      }, startTime);
+      
+      // Draw cable
+      tl.to(activeCable, {
+        height: `${i * 100}vh`,
+        duration: 3,
+        ease: "power1.inOut"
+      }, startTime);
+
+      // Fade out prev node
+      tl.to(prevCard, {
+        opacity: 0,
+        y: -100,
+        scale: 0.9,
+        rotationX: -15,
+        duration: 1.5,
+        ease: "power2.in"
+      }, `${startTime}+=0.2`);
+      
+      // Dim prev dot
+      tl.to(dotsInner[i - 1], {
+        scale: 0, opacity: 0, duration: 0.5
+      }, `${startTime}+=0.5`);
+      tl.to(dots[i - 1], {
+        borderColor: "rgba(255,255,255,0.2)", duration: 0.5
+      }, `${startTime}+=0.5`);
+
+      // Light up current dot
+      tl.to(dots[i], { borderColor: "#ededed", duration: 0.5 }, `${startTime}+=2.2`);
+      tl.to(dotsInner[i], { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(2)" }, `${startTime}+=2.2`);
+
+      // Fade in current node
+      tl.fromTo(currCard,
+        { opacity: 0, y: 100, rotationX: 15, scale: 0.95 },
+        { opacity: 1, y: 0, rotationX: 0, scale: 1, duration: 1.5, ease: "power3.out" },
+        `${startTime}+=2.2`
+      );
+      
+      tl.fromTo(currElems,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, stagger: 0.05, duration: 0.8, ease: "back.out(1.5)" },
+        `${startTime}+=2.4`
+      );
+      
+      tl.addLabel(`node-${i}`);
+    }
+
+    // Outro
+    tl.to(cameraWrapper, {
+      rotationX: 45,
+      scale: 0.7,
+      opacity: 0,
+      y: -100,
+      duration: 2,
+      ease: "power2.in"
+    }, `node-${nodes.length - 1}+=1`);
+  };
+
+  document.addEventListener("astro:page-load", initExperience);
+  if (document.readyState === "complete") {
+    initExperience();
+  } else {
+    document.addEventListener("DOMContentLoaded", initExperience);
+  }
+</script>

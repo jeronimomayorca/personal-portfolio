@@ -20,7 +20,7 @@ const translatePath = useTranslatedPath(lang);
       href={translatePath("/")}
       class="font-mono font-bold text-sm tracking-tighter hover:opacity-70 transition-opacity"
     >
-      >jeronimo<span class="text-muted">@dev</span>:~$</a
+      jeronimo<span class="text-muted">@localhost</span>:~$<span class="animate-blink">_</span></a
     >
 
     <div class="flex items-center gap-6">
@@ -66,3 +66,19 @@ const translatePath = useTranslatedPath(lang);
     </div>
   </div>
 </nav>
+
+<style>
+  .animate-blink {
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+</style>

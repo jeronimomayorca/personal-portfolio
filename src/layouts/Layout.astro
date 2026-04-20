@@ -7,6 +7,7 @@ import { getLangFromUrl } from '../i18n/utils';
 interface Props {
 	title: string;
 	description?: string;
+	fullWidth?: boolean;
 }
 
 const lang = getLangFromUrl(Astro.url);
@@ -18,7 +19,8 @@ const defaultDescriptions = {
 
 const { 
   title, 
-  description = defaultDescriptions[lang] || defaultDescriptions.en
+  description = defaultDescriptions[lang] || defaultDescriptions.en,
+  fullWidth = false
 } = Astro.props;
 
 const siteUrl = 'https://jeronimomayorca.vercel.app';
@@ -105,7 +107,7 @@ const ogImage = `${siteUrl}/og-image.png`;
 	</head>
 	<body class="bg-background text-foreground antialiased font-sans selection:bg-accent selection:text-background">
 		<Navbar />
-		<main class="max-w-4xl mx-auto px-6 pt-32 min-h-screen">
+		<main class={fullWidth ? "w-full min-h-screen" : "max-w-4xl mx-auto px-6 pt-32 min-h-screen"}>
 			<slot />
 		</main>
 		<Footer />

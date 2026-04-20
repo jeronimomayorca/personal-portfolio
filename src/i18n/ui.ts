@@ -21,12 +21,15 @@ export const ui = {
     'hero.projects': 'View Projects',
     
     // Index Cards
-    'cards.ai.title': 'AI & Data',
-    'cards.ai.desc': 'LLM integration, NLP, and data pipeline engineering.',
-    'cards.backend.title': 'Backend Engineering',
-    'cards.backend.desc': 'Robust microservices, optimized APIs, and complex database management.',
-    'cards.cloud.title': 'Cloud Architecture',
-    'cards.cloud.desc': 'Scalable deployment and cloud infrastructure optimization.',
+    'cards.ai.tag': 'Infrastructure',
+    'cards.ai.title': '34% reduction in operational costs',
+    'cards.ai.desc': 'I led the refactoring of critical processes and the automation of workflows at HumphreysSoft, achieving a sustained 34% reduction in infrastructure costs.',
+    'cards.backend.tag': 'Computer Vision',
+    'cards.backend.title': '99% accuracy in event detection',
+    'cards.backend.desc': 'I designed and implemented a computer vision system that reduced false alarms by 99% compared to conventional surveillance solutions, improving operational reliability.',
+    'cards.cloud.tag': 'Conversational AI',
+    'cards.cloud.title': 'Automation of complex legal processes',
+    'cards.cloud.desc': 'I developed conversational AI agents that eliminated bottlenecks in legal document management, significantly reducing processing times.',
     
     // Index Stack
     'stack.title': 'Main Stack',
@@ -66,12 +69,15 @@ export const ui = {
     'hero.projects': 'Ver Proyectos',
     
     // Index Cards
-    'cards.ai.title': 'IA & Data',
-    'cards.ai.desc': 'Integración de LLMs, procesamiento de lenguaje natural y pipelines de datos.',
-    'cards.backend.title': 'Backend Engineering',
-    'cards.backend.desc': 'Microservicios robustos, APIs optimizadas y gestión de bases de datos complejas.',
-    'cards.cloud.title': 'Arquitectura Cloud',
-    'cards.cloud.desc': 'Despliegue escalable y optimización de infraestructura en la nube.',
+    'cards.ai.tag': 'Infraestructura',
+    'cards.ai.title': 'Reducción de costos operativos en un 34%',
+    'cards.ai.desc': 'Lideré la refactorización de procesos críticos y la automatización de flujos de trabajo en HumphreysSoft, logrando una reducción sostenida del 34% en costos de infraestructura.',
+    'cards.backend.tag': 'Visión artificial',
+    'cards.backend.title': '99% de precisión en detección de eventos',
+    'cards.backend.desc': 'Diseñé e implementé un sistema de visión artificial que redujo las falsas alarmas en un 99% frente a soluciones de vigilancia convencionales, mejorando la confiabilidad operacional.',
+    'cards.cloud.tag': 'IA conversacional',
+    'cards.cloud.title': 'Automatización de procesos legales complejos',
+    'cards.cloud.desc': 'Desarrollé agentes de IA conversacional que eliminaron cuellos de botella en la gestión documental legal, reduciendo significativamente los tiempos de tramitación.',
     
     // Index Stack
     'stack.title': 'Stack Principal',
