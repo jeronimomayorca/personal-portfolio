@@ -5,11 +5,11 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<section class="pt-32 space-y-8">
+<section class="pt-48 space-y-12">
   <div class="w-full max-w-3xl mx-auto px-4">
     <div class="bg-zinc-900/40 border border-zinc-800/60 rounded-xl overflow-hidden shadow-2xl backdrop-blur-md">
       <!-- Terminal Header -->
-      <div class="bg-zinc-800/30 px-4 py-3 flex items-center gap-2 border-b border-zinc-800/50">
+      <div class="bg-zinc-800/30 px-6 py-5 flex items-center gap-2 border-b border-zinc-800/50">
         <div class="flex gap-1.5">
           <div class="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
           <div class="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
@@ -22,8 +22,8 @@ const t = useTranslations(lang);
       </div>
 
       <!-- Terminal Body -->
-      <form id="contact-form" class="p-8 font-mono text-sm md:text-base space-y-8">
-        <div class="space-y-3 group/field">
+      <form id="contact-form" class="p-12 font-mono text-sm md:text-base space-y-12">
+        <div class="space-y-6 group/field">
           <div class="flex flex-wrap items-center gap-2">
             <span class="text-[#27c93f] font-bold">user@kernel</span>
             <span class="text-zinc-600">:</span>
@@ -31,7 +31,7 @@ const t = useTranslations(lang);
             <span class="text-zinc-400">$</span>
             <label for="context" class="text-zinc-300 font-medium">{t('contact.context.label')}</label>
           </div>
-          <div class="relative pl-4 border-l border-zinc-800 group-focus-within/field:border-zinc-700 transition-colors">
+          <div class="relative pl-6 border-l border-zinc-800 group-focus-within/field:border-zinc-700 transition-colors">
             <textarea
               id="context"
               name="context"
@@ -43,7 +43,7 @@ const t = useTranslations(lang);
           </div>
         </div>
 
-        <div class="space-y-3 group/field">
+        <div class="space-y-6 group/field">
           <div class="flex flex-wrap items-center gap-2">
             <span class="text-[#27c93f] font-bold">user@kernel</span>
             <span class="text-zinc-600">:</span>
@@ -51,7 +51,7 @@ const t = useTranslations(lang);
             <span class="text-zinc-400">$</span>
             <label for="contact" class="text-zinc-300 font-medium">{t('contact.info.label')}</label>
           </div>
-          <div class="relative pl-4 border-l border-zinc-800 group-focus-within/field:border-zinc-700 transition-colors flex items-center gap-4">
+          <div class="relative pl-6 border-l border-zinc-800 group-focus-within/field:border-zinc-700 transition-colors flex items-center gap-4">
             <input
               id="contact"
               type="text"
