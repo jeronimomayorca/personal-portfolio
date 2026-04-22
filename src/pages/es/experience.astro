@@ -1,54 +1,55 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { getLangFromUrl } from '../../i18n/utils';
+import NeuralNetwork from '../../components/NeuralNetwork.astro';
 
 const lang = getLangFromUrl(Astro.url);
 
 const milestones = [
     {
       date: "Mar 2026 — Presente",
-      role: "Founder & Product Engineer",
+      role: "Fundador & Ingeniero de Producto",
       company: "Lex AI",
       url: "#",
-      description: "Plataforma legal con AI Interviewer que automatiza el intake de clientes garantizando 100% de completitud. Pipeline RAG sobre ChromaDB con búsqueda semántica contra precedentes y estatutos. Reducción del 85% en recolección manual de datos.",
+      description: "Desarrollé un Entrevistador impulsado por IA que recoge los hechos del cliente, garantizando la completitud de los datos antes de la generación de documentos. Arquitecté un pipeline RAG (Generación Aumentada por Recuperación) de alto rendimiento utilizando ChromaDB para vectorizar y consultar extensas bases de datos legales.",
       skills: ["Python", "ChromaDB", "RAG", "LLM"]
     },
     {
       date: "Feb 2026 — Presente",
-      role: "Founder & AI Developer",
+      role: "Fundador & AI Developer",
       company: "VigIA",
       url: "#",
-      description: "Sistema de vigilancia con YOLOv8 que clasifica amenazas reales vs. ruido ambiental en streams de cámaras IP. Detección por zonas con alertas automatizadas vía API y latencia mínima.",
-      skills: ["YOLOv8", "Computer Vision", "Python", "Deep Learning"]
+      description: "Es un sistema de vigilancia con IA que elimina falsas alarmas, distinguiendo amenazas reales de ruido ambiental (sombras, animales, clima). Procesa streams de cámaras IP en tiempo real, con detección por zonas personalizadas, alertas automáticas vía API y conexión a sirenas, altavoces y reflectores para emitir avisos de voz con IA ante posibles amenazas.",
+      skills: ["YOLOv26", "UltraLytics", "Python"]
     },
     {
       date: "Ago 2025 — Feb 2026 · 7 meses",
       role: "Ejecutivo de Marketing",
       company: "EVOLVE your English",
       url: "https://evolveyourenglish.com/",
-      description: "Adquisición de clientes y posicionamiento de mercado. Traducción de specs técnicas en propuestas de valor, habilidades aplicadas directamente al GTM de VigIA y Lex AI.",
-      skills: ["Marketing", "Negociación", "GTM"]
+      description: "Desarrollé habilidades de comunicación, negociación y adquisición de clientes, conectando soluciones técnicas complejas con las necesidades del negocio. Aplico estas estrategias al desarrollo y posicionamiento de mis propios productos como VigIA y Lex AI, traduciendo especificaciones técnicas en propuestas de valor claras para stakeholders.",
+      skills: ["Marketing", "Negociación", "Networking"]
     },
     {
       date: "Jul 2025 — Sep 2025 · 3 meses",
-      role: "Fullstack Developer",
+      role: "Desarrollador Fullstack",
       company: "Sahara Essence",
       url: "https://saharaessence.vercel.app",
-      description: "E-commerce de lujo con AI Fragrance Advisor: chatbot LLM + RAG sobre inventario Supabase en tiempo real. UI/UX premium con respuestas sub-segundo.",
-      skills: ["RAG", "Supabase", "LLM", "E-commerce"]
+      description: "Es una plataforma de e-commerce de lujo para perfumería premium, con un Asesor de Fragancias con IA que ofrece recomendaciones personalizadas según preferencias olfativas. Integra búsqueda semántica en inventario en tiempo real vía Supabase, eliminando sugerencias de productos agotados, y un chatbot conversacional para descubrir el perfume ideal del usuario.",
+      skills: ["Chatbot + RAG", "Supabase", "Next.js"]
     },
     {
       date: "Sep 2024 — Sep 2025 · 1 año",
-      role: "Profesor Superior",
+      role: "Profesor",
       company: "Colegiatura del Café",
-      description: "Docencia en algoritmos, programación básica, hardware-software integration y Excel avanzado. Simplificación de conceptos de arquitectura para estudiantes de nivel superior.",
+      description: "Impartí cursos de Integración Hardware-Software, Algoritmos, Programación, Excel Basico - Medio y Tecnologías de la Información. Simplifiqué conceptos técnicos complejos —como protocolos de comunicación y arquitectura de sistemas— construyendo bases sólidas en pensamiento lógico y resolución de problemas para mis estudiantes.",
       skills: ["Algoritmos", "Hardware", "Excel"]
     },
     {
       date: "Ene 2025 — Feb 2025 · 2 meses",
-      role: "Back End Developer",
+      role: "Desarrollador Backend",
       company: "Xarasoft S.A.S",
-      description: "Backend para ERP escolar: algoritmos de ponderación académica dinámica e interfaces AJAX con consistencia de datos en tiempo real.",
+      description: "Desarrollé la lógica backend de un ERP de gestión escolar y contabilidad, incluyendo algoritmos de ponderación dinámica para el cálculo de rendimiento académico. Optimicé consultas de base de datos e interfaces AJAX para garantizar consistencia en tiempo real.",
       skills: ["PHP", "MySQL", "AJAX", "Bootstrap"]
     },
     {
@@ -56,7 +57,7 @@ const milestones = [
       role: "Fullstack Developer",
       company: "Humphrey Consulting Group",
       url: "https://humphreysoft.com/",
-      description: "Integración ZOHO con 25% menos latencia, módulo de cumplimiento DIAN con Frappe y auditoría cloud que redujo costos un 40%. Refactoring de 30+ endpoints críticos en Python.",
+      description: "Integré una capa de comunicación con ZOHO reduciendo la latencia un 25% y automatizando flujos de soporte. Desarrollé un módulo de cumplimiento normativo con Frappe Framework según estándares DIAN, optimicé infraestructura cloud reduciendo costos un 34% y refactoricé más de 20 endpoints críticos en Python.",
       skills: ["Python", "Docker", "SQL", "Frappe", "ZOHO"]
     }
 ];
@@ -65,49 +66,14 @@ const milestones = [
 <Layout title="Experiencia" fullWidth={true}>
   <div id="drone-container" class="w-full relative h-screen overflow-hidden bg-background [perspective:1500px]">
     
+    <!-- Neural Network Canvas (outside camera-wrapper so it's always visible) -->
+    <NeuralNetwork />
+
     <div id="camera-wrapper" class="w-full h-full absolute top-0 left-0 origin-center [transform-style:preserve-3d]">
       
       <!-- Tech Grid Background -->
       <div class="tech-grid absolute inset-[-50%] w-[200%] h-[200%] opacity-30 z-0 pointer-events-none"></div>
 
-      <!-- Geometric Pattern Layer: Hexagons -->
-      <div id="geo-pattern" class="absolute inset-[-50%] w-[200%] h-[200%] z-0 pointer-events-none opacity-[0.30]">
-        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id="hexagons" x="0" y="0" width="120" height="104" patternUnits="userSpaceOnUse">
-              <polygon points="60,2 110,28 110,76 60,102 10,76 10,28" fill="none" stroke="white" stroke-width="0.6" />
-              <polygon points="120,54 170,80 170,128 120,154 70,128 70,80" fill="none" stroke="white" stroke-width="0.4" opacity="0.6" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#hexagons)" />
-        </svg>
-      </div>
-
-      <!-- Geometric Pattern Layer: Diamond Lattice -->
-      <div id="geo-pattern-2" class="absolute inset-[-60%] w-[220%] h-[220%] z-0 pointer-events-none opacity-[0.24]">
-        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id="diamonds" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
-              <polygon points="40,0 80,40 40,80 0,40" fill="none" stroke="white" stroke-width="0.5" />
-              <line x1="40" y1="0" x2="40" y2="80" stroke="white" stroke-width="0.2" opacity="0.4" />
-              <line x1="0" y1="40" x2="80" y2="40" stroke="white" stroke-width="0.2" opacity="0.4" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#diamonds)" />
-        </svg>
-      </div>
-
-      <!-- Geometric Pattern Layer: Diagonal Lines -->
-      <div id="geo-pattern-3" class="absolute inset-[-40%] w-[180%] h-[180%] z-0 pointer-events-none opacity-[0.36]">
-        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id="diagonals" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-              <line x1="0" y1="40" x2="40" y2="0" stroke="white" stroke-width="0.4" opacity="0.5" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#diagonals)" />
-        </svg>
-      </div>
 
       <div id="map-layer" class="w-full absolute top-0 left-0 z-10">
         
@@ -194,6 +160,22 @@ const milestones = [
         <path d="m19 12-7 7-7-7"/>
       </svg>
     </div>
+
+    <!-- Download CV Button -->
+    <a
+      id="cv-download-btn"
+      href="https://drive.google.com/file/d/1e7B9V0sNbs7hqkfVLr_9RTg42VfIJQGY/view?usp=sharing"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="cv-btn fixed bottom-6 left-6 z-50 flex items-center gap-2.5 px-5 py-2.5 rounded-full border border-border/40 bg-background/60 backdrop-blur-xl text-foreground/80 text-sm font-mono tracking-wide hover:text-foreground hover:border-foreground/40 hover:bg-background/80 transition-all duration-300 opacity-0 pointer-events-none shadow-lg shadow-black/20"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="7 10 12 15 17 10"/>
+        <line x1="12" y1="15" x2="12" y2="3"/>
+      </svg>
+      Descargar mi CV
+    </a>
   </div>
 </Layout>
 
@@ -207,12 +189,6 @@ const milestones = [
     -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
   }
 
-  #geo-pattern,
-  #geo-pattern-2,
-  #geo-pattern-3 {
-    mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 20%, transparent 70%);
-    -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 20%, transparent 70%);
-  }
   
   @keyframes scan {
     0% { transform: translateY(-150%); }
@@ -221,6 +197,10 @@ const milestones = [
   
   .animate-scan {
     animation: scan 3s linear infinite;
+  }
+
+  .cv-btn:hover {
+    box-shadow: 0 0 20px rgba(255,255,255,0.08), 0 4px 20px rgba(0,0,0,0.3);
   }
 </style>
 
@@ -239,9 +219,8 @@ const milestones = [
     const dotsInner = gsap.utils.toArray<HTMLElement>(".dot-inner");
     const activeCable = document.querySelector("#active-cable");
     const scrollHint = document.querySelector("#scroll-hint");
-    const geoPattern1 = document.querySelector("#geo-pattern");
-    const geoPattern2 = document.querySelector("#geo-pattern-2");
-    const geoPattern3 = document.querySelector("#geo-pattern-3");
+    const cvBtn = document.querySelector("#cv-download-btn");
+
 
     if (!droneContainer || nodes.length === 0) return;
 
@@ -266,30 +245,15 @@ const milestones = [
       "intro"
     );
 
-    // Animate geometric patterns with parallax
-    if (geoPattern1) {
-      tl.fromTo(geoPattern1, 
-        { rotation: 0, scale: 1 },
-        { rotation: 8, scale: 1.05, duration: 2, ease: "none" },
-        "intro"
-      );
-    }
-    if (geoPattern2) {
-      tl.fromTo(geoPattern2, 
-        { rotation: 0, scale: 1 },
-        { rotation: -5, scale: 1.03, duration: 2, ease: "none" },
-        "intro"
-      );
-    }
-    if (geoPattern3) {
-      tl.fromTo(geoPattern3, 
-        { rotation: 0 },
-        { rotation: 3, duration: 2, ease: "none" },
-        "intro"
-      );
-    }
+
+
     
     tl.to(scrollHint, { opacity: 0, duration: 1 }, "intro+=1");
+
+    // Show CV download button
+    if (cvBtn) {
+      tl.to(cvBtn, { opacity: 1, pointerEvents: "auto", duration: 1, ease: "power2.out" }, "intro+=2");
+    }
 
     const node0Card = nodes[0].querySelector('.node-card');
     const node0Elems = nodes[0].querySelectorAll('.node-date, .node-metric, .node-title, .node-company, .node-desc, .node-skills span');
@@ -332,30 +296,7 @@ const milestones = [
         ease: "power1.inOut"
       }, startTime);
 
-      // Rotate geometric patterns per node transition
-      if (geoPattern1) {
-        tl.to(geoPattern1, {
-          rotation: `+=${6}`,
-          scale: 1 + (i % 2 === 0 ? 0.02 : -0.02),
-          duration: 3,
-          ease: "power1.inOut"
-        }, startTime);
-      }
-      if (geoPattern2) {
-        tl.to(geoPattern2, {
-          rotation: `-=${4}`,
-          duration: 3,
-          ease: "power1.inOut"
-        }, startTime);
-      }
-      if (geoPattern3) {
-        tl.to(geoPattern3, {
-          rotation: `+=${2}`,
-          x: `+=${i % 2 === 0 ? 15 : -15}`,
-          duration: 3,
-          ease: "power1.inOut"
-        }, startTime);
-      }
+
 
       // Fade out prev node
       tl.to(prevCard, {
@@ -396,6 +337,9 @@ const milestones = [
     }
 
     // Outro
+    if (cvBtn) {
+      tl.to(cvBtn, { opacity: 0, pointerEvents: "none", duration: 1, ease: "power2.in" }, `node-${nodes.length - 1}+=0.5`);
+    }
     tl.to(cameraWrapper, {
       rotationX: 45,
       scale: 0.7,
