@@ -1,55 +1,56 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { getLangFromUrl } from '../i18n/utils';
+import NeuralNetwork from '../components/NeuralNetwork.astro';
 
 const lang = getLangFromUrl(Astro.url);
 
 const milestonesData = {
   en: [
     {
-      date: "Mar 2026 — Present",
+      date: "March 2026 — Present",
       role: "Founder & Product Engineer",
       company: "Lex AI",
       url: "#",
-      description: "Legal platform with AI Interviewer automating client intake ensuring 100% completeness. RAG pipeline on ChromaDB with semantic search against precedents and statutes. 85% reduction in manual data collection.",
-      skills: ["Python", "ChromaDB", "RAG", "LLM"]
+      description: "Developed an AI-powered Interviewer that automates client intake, ensuring 100% data completeness before document generation. Architected a RAG pipeline using ChromaDB to vectorize and query extensive legal databases. Integrated LLM orchestration with custom prompt engineering to handle complex legal terminology and maintain strict regulatory compliance.",
+      skills: ["Legal Tech", 'Python', "Vector DBs"]
     },
     {
       date: "Feb 2026 — Present",
       role: "Founder & AI Developer",
       company: "VigIA",
       url: "#",
-      description: "Surveillance system with YOLOv8 classifying real threats vs. environmental noise in IP camera streams. Zone-based detection with automated API alerts and minimal latency.",
-      skills: ["YOLOv8", "Computer Vision", "Python", "Deep Learning"]
+      description: "is an AI-powered surveillance system that eliminates false alarms by distinguishing real threats from environmental noise (shadows, animals, weather). It processes IP camera streams in real time, with customizable zone-based detection, automated API alerts, and integration with sirens, speakers, and floodlights to broadcast AI-generated voice warnings upon detecting potential threats.",
+      skills: ["YOLOv26", "UltraLytics", "Python"]
     },
     {
       date: "Aug 2025 — Feb 2026 · 7 mos",
       role: "Marketing Executive",
       company: "EVOLVE your English",
       url: "https://evolveyourenglish.com/",
-      description: "Client acquisition and market positioning. Translation of technical specs into value propositions, skills directly applied to the GTM of VigIA and Lex AI.",
-      skills: ["Marketing", "Negotiation", "GTM"]
+      description: "Developed strong communication, negotiation, and client acquisition skills, bridging complex technical solutions with real business needs. I now apply these strategies to the development and market positioning of my own products like VigIA and Lex AI, translating technical specs into clear value propositions for stakeholders.",
+      skills: ["Marketing", "Negotiation", "Networking"]
     },
     {
       date: "Jul 2025 — Sep 2025 · 3 mos",
       role: "Fullstack Developer",
       company: "Sahara Essence",
       url: "https://saharaessence.vercel.app",
-      description: "Luxury e-commerce with AI Fragrance Advisor: LLM chatbot + RAG on real-time Supabase inventory. Premium UI/UX with sub-second responses.",
-      skills: ["RAG", "Supabase", "LLM", "E-commerce"]
+      description: "Is a luxury e-commerce platform for premium perfumery, featuring an AI Fragrance Advisor that delivers personalized recommendations based on olfactory preferences. It integrates semantic search over real-time Supabase inventory to eliminate out-of-stock suggestions, paired with a conversational chatbot that guides users toward their perfect scent.",
+      skills: ["Chatbot + RAG", "Supabase", "Next.js"]
     },
     {
       date: "Sep 2024 — Sep 2025 · 1 yr",
-      role: "Senior Teacher",
+      role: "Teacher",
       company: "Colegiatura del Café",
-      description: "Teaching algorithms, basic programming, hardware-software integration, and advanced Excel. Simplification of architecture concepts for higher education students.",
+      description: "Taught courses in Hardware-Software Integration, Algorithms, Programming, Advanced Excel, and Information Technology. Simplified complex technical concepts —such as communication protocols and system architecture— building strong logical thinking and problem-solving foundations in students.",
       skills: ["Algorithms", "Hardware", "Excel"]
     },
     {
       date: "Jan 2025 — Feb 2025 · 2 mos",
-      role: "Back End Developer",
+      role: "Backend Developer",
       company: "Xarasoft S.A.S",
-      description: "Backend for school ERP: dynamic academic weighting algorithms and AJAX interfaces with real-time data consistency.",
+      description: "Built the core backend of a school management and accounting ERP, engineering dynamic weighting algorithms to calculate academic performance. Optimized database queries and AJAX-based interfaces for real-time data consistency and system performance.",
       skills: ["PHP", "MySQL", "AJAX", "Bootstrap"]
     },
     {
@@ -57,118 +58,27 @@ const milestonesData = {
       role: "Fullstack Developer",
       company: "Humphrey Consulting Group",
       url: "https://humphreysoft.com/",
-      description: "ZOHO integration with 25% lower latency, DIAN compliance module using Frappe, and cloud audit reducing costs by 40%. Refactored 30+ critical Python endpoints.",
-      skills: ["Python", "Docker", "SQL", "Frappe", "ZOHO"]
-    }
-  ],
-  es: [
-    {
-      date: "Mar 2026 — Presente",
-      role: "Founder & Product Engineer",
-      company: "Lex AI",
-      url: "#",
-      description: "Plataforma legal con AI Interviewer que automatiza el intake de clientes garantizando 100% de completitud. Pipeline RAG sobre ChromaDB con búsqueda semántica contra precedentes y estatutos. Reducción del 85% en recolección manual de datos.",
-      skills: ["Python", "ChromaDB", "RAG", "LLM"]
-    },
-    {
-      date: "Feb 2026 — Presente",
-      role: "Founder & AI Developer",
-      company: "VigIA",
-      url: "#",
-      description: "Sistema de vigilancia con YOLOv8 que clasifica amenazas reales vs. ruido ambiental en streams de cámaras IP. Detección por zonas con alertas automatizadas vía API y latencia mínima.",
-      skills: ["YOLOv8", "Computer Vision", "Python", "Deep Learning"]
-    },
-    {
-      date: "Ago 2025 — Feb 2026 · 7 meses",
-      role: "Ejecutivo de Marketing",
-      company: "EVOLVE your English",
-      url: "https://evolveyourenglish.com/",
-      description: "Adquisición de clientes y posicionamiento de mercado. Traducción de specs técnicas en propuestas de valor, habilidades aplicadas directamente al GTM de VigIA y Lex AI.",
-      skills: ["Marketing", "Negociación", "GTM"]
-    },
-    {
-      date: "Jul 2025 — Sep 2025 · 3 meses",
-      role: "Fullstack Developer",
-      company: "Sahara Essence",
-      url: "https://saharaessence.vercel.app",
-      description: "E-commerce de lujo con AI Fragrance Advisor: chatbot LLM + RAG sobre inventario Supabase en tiempo real. UI/UX premium con respuestas sub-segundo.",
-      skills: ["RAG", "Supabase", "LLM", "E-commerce"]
-    },
-    {
-      date: "Sep 2024 — Sep 2025 · 1 año",
-      role: "Profesor Superior",
-      company: "Colegiatura del Café",
-      description: "Docencia en algoritmos, programación básica, hardware-software integration y Excel avanzado. Simplificación de conceptos de arquitectura para estudiantes de nivel superior.",
-      skills: ["Algoritmos", "Hardware", "Excel"]
-    },
-    {
-      date: "Ene 2025 — Feb 2025 · 2 meses",
-      role: "Back End Developer",
-      company: "Xarasoft S.A.S",
-      description: "Backend para ERP escolar: algoritmos de ponderación académica dinámica e interfaces AJAX con consistencia de datos en tiempo real.",
-      skills: ["PHP", "MySQL", "AJAX", "Bootstrap"]
-    },
-    {
-      date: "Jun 2023 — Mar 2024 · 10 meses",
-      role: "Fullstack Developer",
-      company: "Humphrey Consulting Group",
-      url: "https://humphreysoft.com/",
-      description: "Integración ZOHO con 25% menos latencia, módulo de cumplimiento DIAN con Frappe y auditoría cloud que redujo costos un 40%. Refactoring de 30+ endpoints críticos en Python.",
+      description: "Integrated a ZOHO-based communication layer reducing response latency by 25% and automating support workflows. Built a regulatory compliance module with Frappe Framework following DIAN standards, optimized cloud infrastructure cutting costs by 34%, and refactored over 20 critical API endpoints in Python.",
       skills: ["Python", "Docker", "SQL", "Frappe", "ZOHO"]
     }
   ]
 };
 
-const milestones = lang === 'es' ? milestonesData.es : milestonesData.en;
-const pageTitle = lang === 'es' ? 'Recorrido Profesional' : 'Experience Journey';
+const milestones = milestonesData.en;
+const pageTitle = 'My Career';
 ---
 
 <Layout title={pageTitle} fullWidth={true}>
   <div id="drone-container" class="w-full relative h-screen overflow-hidden bg-background [perspective:1500px]">
     
+    <!-- Neural Network Canvas (outside camera-wrapper so it's always visible) -->
+    <NeuralNetwork />
+
     <div id="camera-wrapper" class="w-full h-full absolute top-0 left-0 origin-center [transform-style:preserve-3d]">
       
       <!-- Tech Grid Background -->
       <div class="tech-grid absolute inset-[-50%] w-[200%] h-[200%] opacity-30 z-0 pointer-events-none"></div>
 
-      <!-- Geometric Pattern Layer: Hexagons -->
-      <div id="geo-pattern" class="absolute inset-[-50%] w-[200%] h-[200%] z-0 pointer-events-none opacity-[0.30]">
-        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id="hexagons" x="0" y="0" width="120" height="104" patternUnits="userSpaceOnUse">
-              <polygon points="60,2 110,28 110,76 60,102 10,76 10,28" fill="none" stroke="white" stroke-width="0.6" />
-              <polygon points="120,54 170,80 170,128 120,154 70,128 70,80" fill="none" stroke="white" stroke-width="0.4" opacity="0.6" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#hexagons)" />
-        </svg>
-      </div>
-
-      <!-- Geometric Pattern Layer: Diamond Lattice -->
-      <div id="geo-pattern-2" class="absolute inset-[-60%] w-[220%] h-[220%] z-0 pointer-events-none opacity-[0.24]">
-        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id="diamonds" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
-              <polygon points="40,0 80,40 40,80 0,40" fill="none" stroke="white" stroke-width="0.5" />
-              <line x1="40" y1="0" x2="40" y2="80" stroke="white" stroke-width="0.2" opacity="0.4" />
-              <line x1="0" y1="40" x2="80" y2="40" stroke="white" stroke-width="0.2" opacity="0.4" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#diamonds)" />
-        </svg>
-      </div>
-
-      <!-- Geometric Pattern Layer: Diagonal Lines -->
-      <div id="geo-pattern-3" class="absolute inset-[-40%] w-[180%] h-[180%] z-0 pointer-events-none opacity-[0.36]">
-        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id="diagonals" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-              <line x1="0" y1="40" x2="40" y2="0" stroke="white" stroke-width="0.4" opacity="0.5" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#diagonals)" />
-        </svg>
-      </div>
 
       <div id="map-layer" class="w-full absolute top-0 left-0 z-10">
         
@@ -255,6 +165,22 @@ const pageTitle = lang === 'es' ? 'Recorrido Profesional' : 'Experience Journey'
         <path d="m19 12-7 7-7-7"/>
       </svg>
     </div>
+
+    <!-- Download CV Button -->
+    <a
+      id="cv-download-btn"
+      href="https://drive.google.com/file/d/1MUKZu_7gvptcsOzVKFNqXMOCbCtevlA3/view?usp=drive_link"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="cv-btn fixed bottom-6 left-6 z-50 flex items-center gap-2.5 px-5 py-2.5 rounded-full border border-border/40 bg-background/60 backdrop-blur-xl text-foreground/80 text-sm font-mono tracking-wide hover:text-foreground hover:border-foreground/40 hover:bg-background/80 transition-all duration-300 opacity-0 pointer-events-none shadow-lg shadow-black/20"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="7 10 12 15 17 10"/>
+        <line x1="12" y1="15" x2="12" y2="3"/>
+      </svg>
+      Download my CV
+    </a>
   </div>
 </Layout>
 
@@ -268,12 +194,6 @@ const pageTitle = lang === 'es' ? 'Recorrido Profesional' : 'Experience Journey'
     -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
   }
 
-  #geo-pattern,
-  #geo-pattern-2,
-  #geo-pattern-3 {
-    mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 20%, transparent 70%);
-    -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 20%, transparent 70%);
-  }
   
   @keyframes scan {
     0% { transform: translateY(-150%); }
@@ -282,6 +202,10 @@ const pageTitle = lang === 'es' ? 'Recorrido Profesional' : 'Experience Journey'
   
   .animate-scan {
     animation: scan 3s linear infinite;
+  }
+
+  .cv-btn:hover {
+    box-shadow: 0 0 20px rgba(255,255,255,0.08), 0 4px 20px rgba(0,0,0,0.3);
   }
 </style>
 
@@ -300,9 +224,8 @@ const pageTitle = lang === 'es' ? 'Recorrido Profesional' : 'Experience Journey'
     const dotsInner = gsap.utils.toArray<HTMLElement>(".dot-inner");
     const activeCable = document.querySelector("#active-cable");
     const scrollHint = document.querySelector("#scroll-hint");
-    const geoPattern1 = document.querySelector("#geo-pattern");
-    const geoPattern2 = document.querySelector("#geo-pattern-2");
-    const geoPattern3 = document.querySelector("#geo-pattern-3");
+    const cvBtn = document.querySelector("#cv-download-btn");
+
 
     if (!droneContainer || nodes.length === 0) return;
 
@@ -327,30 +250,15 @@ const pageTitle = lang === 'es' ? 'Recorrido Profesional' : 'Experience Journey'
       "intro"
     );
 
-    // Animate geometric patterns with parallax
-    if (geoPattern1) {
-      tl.fromTo(geoPattern1, 
-        { rotation: 0, scale: 1 },
-        { rotation: 8, scale: 1.05, duration: 2, ease: "none" },
-        "intro"
-      );
-    }
-    if (geoPattern2) {
-      tl.fromTo(geoPattern2, 
-        { rotation: 0, scale: 1 },
-        { rotation: -5, scale: 1.03, duration: 2, ease: "none" },
-        "intro"
-      );
-    }
-    if (geoPattern3) {
-      tl.fromTo(geoPattern3, 
-        { rotation: 0 },
-        { rotation: 3, duration: 2, ease: "none" },
-        "intro"
-      );
-    }
+
+
     
     tl.to(scrollHint, { opacity: 0, duration: 1 }, "intro+=1");
+
+    // Show CV download button
+    if (cvBtn) {
+      tl.to(cvBtn, { opacity: 1, pointerEvents: "auto", duration: 1, ease: "power2.out" }, "intro+=2");
+    }
 
     const node0Card = nodes[0].querySelector('.node-card');
     const node0Elems = nodes[0].querySelectorAll('.node-date, .node-metric, .node-title, .node-company, .node-desc, .node-skills span');
@@ -393,30 +301,7 @@ const pageTitle = lang === 'es' ? 'Recorrido Profesional' : 'Experience Journey'
         ease: "power1.inOut"
       }, startTime);
 
-      // Rotate geometric patterns per node transition
-      if (geoPattern1) {
-        tl.to(geoPattern1, {
-          rotation: `+=${6}`,
-          scale: 1 + (i % 2 === 0 ? 0.02 : -0.02),
-          duration: 3,
-          ease: "power1.inOut"
-        }, startTime);
-      }
-      if (geoPattern2) {
-        tl.to(geoPattern2, {
-          rotation: `-=${4}`,
-          duration: 3,
-          ease: "power1.inOut"
-        }, startTime);
-      }
-      if (geoPattern3) {
-        tl.to(geoPattern3, {
-          rotation: `+=${2}`,
-          x: `+=${i % 2 === 0 ? 15 : -15}`,
-          duration: 3,
-          ease: "power1.inOut"
-        }, startTime);
-      }
+
 
       // Fade out prev node
       tl.to(prevCard, {
@@ -457,6 +342,9 @@ const pageTitle = lang === 'es' ? 'Recorrido Profesional' : 'Experience Journey'
     }
 
     // Outro
+    if (cvBtn) {
+      tl.to(cvBtn, { opacity: 0, pointerEvents: "none", duration: 1, ease: "power2.in" }, `node-${nodes.length - 1}+=0.5`);
+    }
     tl.to(cameraWrapper, {
       rotationX: 45,
       scale: 0.7,

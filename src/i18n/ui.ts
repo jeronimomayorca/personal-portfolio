@@ -14,8 +14,8 @@ export const ui = {
     
     // Index Hero
     'hero.title.pre': 'Integrating ',
-    'hero.title.backend': 'AI-first solutions',
-    'hero.title.and': ' into your processes to eliminate ',
+    'hero.title.backend': 'AI-first',
+    'hero.title.and': ' solutions into your processes to eliminate ',
     'hero.title.ai': 'complexity.',
     'hero.desc': 'I design profitable architectures that simplify workflows and drastically reduce hours spent on critical tasks.',
     'hero.projects': 'View Projects',
@@ -36,28 +36,28 @@ export const ui = {
 
     // Projects Page
     'projects.title': 'Projects',
-    'projects.subtitle': 'A selection of things I\'ve built — from AI-powered platforms to full-stack applications.',
+    'projects.subtitle': 'A selection of things I\'ve built.',
     
     // Project: VigIA
     'projects.vigia.title': 'VigIA',
-    'projects.vigia.desc': 'AI-powered surveillance analytics platform that processes real-time video feeds using computer vision and deep learning to detect anomalies and generate actionable security insights.',
+    'projects.vigia.desc': 'AI-powered sentry that detects weapons, intruders, and wall scaling. Real-time sirens and lights activate to deter criminals before they act, eliminating false alarms from traditional systems.',
     
     // Project: Lex AI
     'projects.lexai.title': 'Lex AI',
-    'projects.lexai.desc': 'Intelligent legal assistant that streamlines document generation through conversational AI. Features multi-turn diagnostic interviews and automated legal document drafting.',
+    'projects.lexai.desc': 'AI specialized in legal drafting. Generate petitions, rulings, and precise legal documents tailored to your case.',
     
     // Project: Sahara Essence
     'projects.sahara.title': 'Sahara Essence',
-    'projects.sahara.desc': 'Premium e-commerce platform for a luxury perfume brand. Editorial design with immersive product experiences and seamless checkout flow.',
+    'projects.sahara.desc': 'Aurora is your AI scent advisor. Find your perfect fragrance through a personalized experience designed to match your style.',
     
     // Project: VeloSecure
     'projects.velosecure.title': 'VeloSecure',
-    'projects.velosecure.desc': 'IoT-enabled bike security system combining GPS tracking, real-time alerts, and a mobile companion app to protect against theft and monitor ride analytics.',
+    'projects.velosecure.desc': 'GPS bike tracking with real-time unauthorized movement alerts. Features a mobile app for theft reporting and automatic route syncing with Strava for every ride.',
     
     // Contact Form
     'contact.context.label': 'What are we going to build?',
     'contact.context.placeholder': 'Describe your project or inquiry...',
-    'contact.info.label': 'Email, LinkedIn or Telegram.',
+    'contact.info.label': 'WhatsApp, Email, LinkedIn, Telegram...',
     'contact.info.placeholder': 'How can I reach you?',
     'contact.submit': 'execute',
     'contact.success': '[ DONE ]: Message sent. Response in < 24 hours.',
@@ -69,8 +69,8 @@ export const ui = {
     'nav.blog': 'Blog',
     
     // Index Hero
-    'hero.title.pre': 'Integro ',
-    'hero.title.backend': 'soluciones AI-first',
+    'hero.title.pre': 'Integro soluciones ',
+    'hero.title.backend': 'AI-first',
     'hero.title.and': ' en tus procesos para eliminar la ',
     'hero.title.ai': 'complejidad.',
     'hero.desc': 'Diseño arquitecturas rentables que simplifican flujos de trabajo y reducen drásticamente las horas invertidas en tareas críticas.',
@@ -92,28 +92,28 @@ export const ui = {
 
     // Projects Page
     'projects.title': 'Proyectos',
-    'projects.subtitle': 'Una selección de lo que he construido — desde plataformas potenciadas por IA hasta aplicaciones full-stack.',
+    'projects.subtitle': 'Una selección de lo que he construido.',
     
     // Project: VigIA
     'projects.vigia.title': 'VigIA',
-    'projects.vigia.desc': 'Plataforma de analítica de vigilancia con IA que procesa feeds de video en tiempo real usando visión por computadora y deep learning para detectar anomalías y generar insights de seguridad.',
+    'projects.vigia.desc': 'Centinela inteligente que detecta armas e intrusos en tiempo real. Disuade criminales mediante alertas sonoras y lumínicas. Cero falsas alarmas: nuestra IA se encarga de detectar las amenazas reales.',
     
     // Project: Lex AI
     'projects.lexai.title': 'Lex AI',
-    'projects.lexai.desc': 'Asistente legal inteligente que agiliza la generación de documentos mediante IA conversacional. Incluye entrevistas diagnósticas y redacción automatizada de documentos legales.',
+    'projects.lexai.desc': 'Automatiza la redacción de documentos judiciales y derechos de petición. Genera textos legales precisos al instante.',
     
     // Project: Sahara Essence
     'projects.sahara.title': 'Sahara Essence',
-    'projects.sahara.desc': 'Plataforma e-commerce premium para una marca de perfumes de lujo. Diseño editorial con experiencias inmersivas de producto y flujo de compra impecable.',
+    'projects.sahara.desc': 'Tu asesora experta en alta perfumería. Aurora utiliza inteligencia artificial para guiarte hacia tu fragancia ideal.',
     
     // Project: VeloSecure
     'projects.velosecure.title': 'VeloSecure',
-    'projects.velosecure.desc': 'Sistema de seguridad para bicicletas con IoT que combina rastreo GPS, alertas en tiempo real y una app móvil para proteger contra robos y monitorear analíticas de ruta.',
+    'projects.velosecure.desc': 'Protección total para tu bicicleta: rastreo GPS y alertas de movimiento no autorizado. Reporta robos desde la app y sincroniza cada ruta automáticamente con Strava.',
     
     // Contact Form
     'contact.context.label': '¿Qué vamos a construir?',
     'contact.context.placeholder': 'Describe tu proyecto o consulta...',
-    'contact.info.label': 'Email, LinkedIn o Telegram.',
+    'contact.info.label': 'WhatsApp, Email, LinkedIn, Telegram...',
     'contact.info.placeholder': '¿Cómo puedo contactarte?',
     'contact.submit': 'ejecutar',
     'contact.success': '[ LISTO ]: Mensaje enviado. Respuesta en < 24 horas.',
