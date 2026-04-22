@@ -5,31 +5,83 @@ const lang = getLangFromUrl(Astro.url);
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="border-t border-border mt-40">
+<footer class="border-t border-zinc-900 mt-40">
+  <!-- Main row -->
   <div
-    class="max-w-4xl mx-auto px-8 py-24 flex flex-col md:flex-row justify-between items-center gap-12"
+    class="max-w-7xl mx-auto px-6 pt-4 pb-2 flex flex-col md:flex-row justify-between items-center gap-3 md:gap-0"
   >
-    <p class="text-sm text-muted">
+    <!-- Left: Copyright -->
+    <p class="font-mono text-xs text-zinc-600">
       © {currentYear} Jerónimo Mayorca.
     </p>
 
-    <div class="flex items-center gap-6 text-sm text-muted">
+    <!-- Center: Location -->
+    <span class="font-mono text-xs text-zinc-600">
+      Manizales, CO [ 5.067, -75.517 ]
+    </span>
+
+    <!-- Right: Social links with keyboard prefixes -->
+    <div class="flex items-center gap-4 font-mono text-xs text-zinc-600">
       <a
         href="mailto:contact@jmayorca.dev"
-        class="hover:text-foreground transition-colors">Email</a
+        class="footer-link"
       >
+        <span class="text-zinc-700">e/</span>email
+      </a>
       <a
         href="https://github.com/jeronimomayorcaar"
         target="_blank"
         rel="noopener noreferrer"
-        class="hover:text-foreground transition-colors">GitHub</a
+        class="footer-link"
       >
+        <span class="text-zinc-700">g/</span>github
+      </a>
       <a
         href="https://linkedin.com/in/jeronimomayorca"
         target="_blank"
         rel="noopener noreferrer"
-        class="hover:text-foreground transition-colors">LinkedIn</a
+        class="footer-link"
       >
+        <span class="text-zinc-700">l/</span>linkedin
+      </a>
     </div>
   </div>
+
+  <!-- Technical metadata row -->
+  <div class="max-w-7xl mx-auto px-6 pb-4 pt-1">
+    <p class="font-mono text-xs text-zinc-700 text-center md:text-left flex flex-wrap items-center justify-center md:justify-start gap-x-1">
+      <span>v2.0.1</span>
+      <span class="text-zinc-800">|</span>
+      <span>Built with Astro & GSAP</span>
+      <span class="text-zinc-800">|</span>
+      <span class="inline-flex items-center gap-1.5">
+        <span class="status-dot"></span>
+        System: Stable
+      </span>
+    </p>
+  </div>
 </footer>
+
+<style>
+  .status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #22c55e;
+    box-shadow: 0 0 4px #22c55e80;
+    animation: blink 2s ease-in-out infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .footer-link {
+    transition: color 150ms ease;
+  }
+
+  .footer-link:hover {
+    color: #ffffff;
+  }
+</style>
