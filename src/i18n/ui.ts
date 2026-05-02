@@ -59,7 +59,7 @@ export const ui = {
     'contact.context.placeholder': 'Describe your project or inquiry...',
     'contact.info.label': 'WhatsApp, Email, LinkedIn, Telegram...',
     'contact.info.placeholder': 'How can I reach you?',
-    'contact.submit': 'execute',
+    'contact.submit': 'Send',
     'contact.success': '[ DONE ]: Message sent. Response in < 24 hours.',
   },
   es: {
@@ -115,7 +115,7 @@ export const ui = {
     'contact.context.placeholder': 'Describe tu proyecto o consulta...',
     'contact.info.label': 'WhatsApp, Email, LinkedIn, Telegram...',
     'contact.info.placeholder': '¿Cómo puedo contactarte?',
-    'contact.submit': 'ejecutar',
+    'contact.submit': 'Enviar',
     'contact.success': '[ LISTO ]: Mensaje enviado. Respuesta en < 24 horas.',
   },
 } as const;

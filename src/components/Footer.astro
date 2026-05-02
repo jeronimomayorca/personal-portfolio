@@ -5,7 +5,7 @@ const lang = getLangFromUrl(Astro.url);
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="border-t border-zinc-900 mt-40">
+<footer class="border-t border-zinc-900 mt-10" style="overflow: visible;">
   <!-- Main row -->
   <div
     class="max-w-7xl mx-auto px-6 pt-4 pb-2 flex flex-col md:flex-row justify-between items-center gap-3 md:gap-0"
@@ -16,20 +16,20 @@ const currentYear = new Date().getFullYear();
     </p>
 
     <!-- Center: Location -->
-    <span class="font-mono text-xs text-zinc-600">
-      Manizales, CO [ 5.067, -75.517 ]
-    </span>
+    <span class="font-mono text-xs text-zinc-600"> [ 5.067, -75.517 ] </span>
 
     <!-- Right: Social links with keyboard prefixes -->
     <div class="flex items-center gap-4 font-mono text-xs text-zinc-600">
-      <a
-        href="mailto:contact@jmayorca.dev"
-        class="footer-link"
+      <button
+        id="copy-email-btn"
+        class="footer-link cursor-pointer bg-transparent border-none p-0 font-mono text-xs text-zinc-600 relative"
+        data-lang={lang}
       >
         <span class="text-zinc-700">e/</span>email
-      </a>
+        <span id="copy-tooltip" class="copy-tooltip"></span>
+      </button>
       <a
-        href="https://github.com/jeronimomayorcaar"
+        href="https://github.com/jeronimomayorca"
         target="_blank"
         rel="noopener noreferrer"
         class="footer-link"
@@ -37,7 +37,7 @@ const currentYear = new Date().getFullYear();
         <span class="text-zinc-700">g/</span>github
       </a>
       <a
-        href="https://linkedin.com/in/jeronimomayorca"
+        href="https://linkedin.com/in/mayorcajeronimo"
         target="_blank"
         rel="noopener noreferrer"
         class="footer-link"
@@ -49,10 +49,10 @@ const currentYear = new Date().getFullYear();
 
   <!-- Technical metadata row -->
   <div class="max-w-7xl mx-auto px-6 pb-4 pt-1">
-    <p class="font-mono text-xs text-zinc-700 text-center md:text-left flex flex-wrap items-center justify-center md:justify-start gap-x-1">
+    <p
+      class="font-mono text-xs text-zinc-700 text-center md:text-left flex flex-wrap items-center justify-center md:justify-start gap-x-1"
+    >
       <span>v2.0.1</span>
-      <span class="text-zinc-800">|</span>
-      <span>Built with Astro & GSAP</span>
       <span class="text-zinc-800">|</span>
       <span class="inline-flex items-center gap-1.5">
         <span class="status-dot"></span>
@@ -73,8 +73,13 @@ const currentYear = new Date().getFullYear();
   }
 
   @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.3;
+    }
   }
 
   .footer-link {
@@ -84,4 +89,84 @@ const currentYear = new Date().getFullYear();
   .footer-link:hover {
     color: #ffffff;
   }
+
+  .copy-tooltip {
+    position: absolute;
+    bottom: calc(100% + 12px);
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+    white-space: nowrap;
+    background: #18181b;
+    border: 1px solid #3f3f46;
+    color: #d4d4d8;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    pointer-events: none;
+    opacity: 0;
+    z-index: 50;
+    transition:
+      opacity 250ms ease,
+      transform 250ms ease;
+  }
+
+  .copy-tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: #3f3f46;
+  }
+
+  .copy-tooltip.visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
 </style>
+
+<script>
+  const btn = document.getElementById("copy-email-btn");
+  const tooltip = document.getElementById("copy-tooltip");
+  const email = "mayorcajeronimo@gmail.com";
+
+  if (btn && tooltip) {
+    const lang = btn.getAttribute("data-lang");
+    const msg =
+      lang === "es"
+        ? `acabo de dejar 'mayorcajeronimo@gmail.com' en tu portapapeles`
+        : `I just copied 'mayorcajeronimo@gmail.com' to your clipboard`;
+
+    tooltip.textContent = msg;
+
+    function fallbackCopy(text: string) {
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      document.body.removeChild(ta);
+    }
+
+    btn.addEventListener("click", async () => {
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(email);
+        } else {
+          fallbackCopy(email);
+        }
+      } catch {
+        fallbackCopy(email);
+      }
+
+      tooltip.classList.add("visible");
+      setTimeout(() => {
+        tooltip.classList.remove("visible");
+      }, 2500);
+    });
+  }
+</script>

@@ -1,5 +1,13 @@
 ---
-import { Github, Linkedin } from "lucide-react";
+import {
+  Github,
+  Linkedin,
+  FolderKanban,
+  Briefcase,
+  Rss,
+  Home,
+  Mail,
+} from "lucide-react";
 import LanguagePicker from "./LanguagePicker.astro";
 import {
   getLangFromUrl,
@@ -13,9 +21,11 @@ const translatePath = useTranslatedPath(lang);
 ---
 
 <nav
-  class="fixed top-0 w-full z-50 border-b border-border bg-background/80 backdrop-blur-md"
+  id="main-navbar"
+  class="fixed top-0 w-full z-[60] border-b border-border bg-background/80 backdrop-blur-md"
 >
-  <div class="max-w-4xl mx-auto px-8 h-20 flex items-center justify-between">
+  <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+    <!-- Logo -->
     <a
       href={translatePath("/")}
       class="font-mono font-bold text-sm tracking-tighter hover:opacity-70 transition-opacity"
@@ -25,51 +35,140 @@ const translatePath = useTranslatedPath(lang);
       ></a
     >
 
-    <div class="flex items-center gap-8">
-      <div
-        class="hidden md:flex items-center gap-6 text-sm font-medium text-muted"
-      >
-        <a
-          href={translatePath("/projects")}
-          class="hover:text-foreground transition-colors">{t("nav.projects")}</a
-        >
-        <a
-          href={translatePath("/experience")}
-          class="hover:text-foreground transition-colors"
-          >{t("nav.experience")}</a
-        >
-        <a
-          href={translatePath("/blog")}
-          class="hover:text-foreground transition-colors">{t("nav.blog")}</a
-        >
+    <!-- Desktop Nav -->
+    <div class="hidden md:flex items-center gap-6">
+      <div class="flex items-center gap-5 text-sm font-medium text-muted">
+        <a href={translatePath("/")} class="nav-link">
+          <span class="inline-flex items-center gap-1.5">
+            <Home size={15} />
+            <span>Home</span>
+          </span>
+        </a>
+        <a href={translatePath("/projects")} class="nav-link">
+          <span class="inline-flex items-center gap-1.5">
+            <FolderKanban size={15} />
+            <span>{t("nav.projects")}</span>
+          </span>
+        </a>
+        <a href={translatePath("/experience")} class="nav-link">
+          <span class="inline-flex items-center gap-1.5">
+            <Briefcase size={15} />
+            <span>{t("nav.experience")}</span>
+          </span>
+        </a>
+        <a href={translatePath("/blog")} class="nav-link">
+          <span class="inline-flex items-center gap-1.5">
+            <Rss size={15} />
+            <span>{t("nav.blog")}</span>
+          </span>
+        </a>
       </div>
 
-      <div class="h-4 w-[1px] bg-border hidden md:block"></div>
+      <div class="h-4 w-px bg-border"></div>
 
-      <div class="flex items-center gap-4">
+      <div class="flex items-center gap-3">
         <LanguagePicker />
         <a
           href="https://github.com/jeronimomayorca"
           target="_blank"
           rel="noopener noreferrer"
           class="text-muted hover:text-foreground transition-colors"
+          aria-label="GitHub"
         >
-          <Github size={18} />
+          <Github size={17} />
         </a>
         <a
           href="https://linkedin.com/in/mayorcajeronimo"
           target="_blank"
           rel="noopener noreferrer"
           class="text-muted hover:text-foreground transition-colors"
+          aria-label="LinkedIn"
         >
-          <Linkedin size={18} />
+          <Linkedin size={17} />
         </a>
       </div>
     </div>
+
+    <!-- Hamburger Button (mobile only) -->
+    <button
+      id="hamburger-btn"
+      class="md:hidden w-10 h-10"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+      type="button"
+    >
+      <span class="hamburger-bar bar-1"></span>
+      <span class="hamburger-bar bar-2"></span>
+      <span class="hamburger-bar bar-3"></span>
+    </button>
   </div>
 </nav>
 
-<style>
+<!-- Mobile Menu Overlay -->
+<div id="mobile-menu" class="mobile-overlay" aria-hidden="true">
+  <div class="mobile-inner">
+    <!-- Nav Links -->
+    <div class="mobile-links">
+      <a href={translatePath("/")} class="mobile-link" data-index="0">
+        <span class="mobile-icon-box"><Home size={20} /></span>
+        <span class="mobile-label">Home</span>
+        <span class="mobile-arrow">→</span>
+      </a>
+      <a href={translatePath("/projects")} class="mobile-link" data-index="1">
+        <span class="mobile-icon-box"><FolderKanban size={20} /></span>
+        <span class="mobile-label">{t("nav.projects")}</span>
+        <span class="mobile-arrow">→</span>
+      </a>
+      <a href={translatePath("/experience")} class="mobile-link" data-index="2">
+        <span class="mobile-icon-box"><Briefcase size={20} /></span>
+        <span class="mobile-label">{t("nav.experience")}</span>
+        <span class="mobile-arrow">→</span>
+      </a>
+      <a href={translatePath("/blog")} class="mobile-link" data-index="3">
+        <span class="mobile-icon-box"><Rss size={20} /></span>
+        <span class="mobile-label">{t("nav.blog")}</span>
+        <span class="mobile-arrow">→</span>
+      </a>
+    </div>
+
+    <!-- Bottom section -->
+    <div class="mobile-bottom">
+      <div class="mobile-divider"></div>
+
+      <div class="mobile-social-row">
+        <div class="mobile-socials">
+          <a
+            href="https://github.com/jeronimomayorca"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-muted hover:text-foreground transition-colors"
+            aria-label="GitHub"
+          >
+            <Github size={20} />
+          </a>
+          <a
+            href="https://linkedin.com/in/mayorcajeronimo"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-muted hover:text-foreground transition-colors"
+            aria-label="LinkedIn"
+          >
+            <Linkedin size={20} />
+          </a>
+        </div>
+        <LanguagePicker />
+      </div>
+
+      <div class="mobile-status">
+        <span class="mobile-status-dot"></span>
+        <span>System: Stable</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style is:global>
+  /* ═══ Blink cursor ═══ */
   .animate-blink {
     animation: blink 1s step-end infinite;
   }
@@ -83,4 +182,288 @@ const translatePath = useTranslatedPath(lang);
       opacity: 0;
     }
   }
+
+  /* ═══ Desktop nav links ═══ */
+  .nav-link {
+    position: relative;
+    color: var(--color-muted);
+    transition: color 0.2s ease;
+  }
+  .nav-link:hover {
+    color: var(--color-foreground);
+  }
+  .nav-link svg {
+    opacity: 0.5;
+    transition: opacity 0.2s ease;
+  }
+  .nav-link:hover svg {
+    opacity: 1;
+  }
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--color-foreground);
+    transition: width 0.25s ease;
+  }
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  /* ═══ Hamburger Button ═══ */
+  #hamburger-btn {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+  }
+  @media (max-width: 767px) {
+    #hamburger-btn {
+      display: flex;
+    }
+  }
+
+  .hamburger-bar {
+    display: block;
+    width: 20px;
+    height: 1.5px;
+    background-color: var(--color-foreground);
+    border-radius: 2px;
+    transition: all 0.35s cubic-bezier(0.77, 0, 0.175, 1);
+    transform-origin: center;
+  }
+
+  #hamburger-btn.is-active .bar-1 {
+    transform: translateY(6.5px) rotate(45deg);
+  }
+  #hamburger-btn.is-active .bar-2 {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  #hamburger-btn.is-active .bar-3 {
+    transform: translateY(-6.5px) rotate(-45deg);
+  }
+
+  /* ═══ Mobile Menu Overlay ═══ */
+  .mobile-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 55;
+    background: var(--color-background);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+      opacity 0.35s cubic-bezier(0.77, 0, 0.175, 1),
+      visibility 0.35s cubic-bezier(0.77, 0, 0.175, 1);
+  }
+  .mobile-overlay.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .mobile-inner {
+    display: flex;
+    flex-direction: column;
+    padding: 96px 28px 36px;
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  .mobile-links {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  /* ═══ Mobile Nav Links ═══ */
+  .mobile-link {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 8px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--color-muted);
+    letter-spacing: -0.01em;
+    border-radius: 12px;
+    transition: all 0.25s ease;
+    text-decoration: none;
+    opacity: 0;
+    transform: translateX(-16px);
+  }
+  .mobile-overlay.is-open .mobile-link {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .mobile-overlay.is-open .mobile-link[data-index="0"] {
+    transition-delay: 0.06s;
+  }
+  .mobile-overlay.is-open .mobile-link[data-index="1"] {
+    transition-delay: 0.1s;
+  }
+  .mobile-overlay.is-open .mobile-link[data-index="2"] {
+    transition-delay: 0.14s;
+  }
+  .mobile-overlay.is-open .mobile-link[data-index="3"] {
+    transition-delay: 0.18s;
+  }
+  .mobile-overlay.is-open .mobile-link[data-index="4"] {
+    transition-delay: 0.24s;
+  }
+
+  .mobile-link:hover,
+  .mobile-link:active {
+    color: var(--color-foreground);
+    background: rgba(255, 255, 255, 0.03);
+    padding-left: 14px;
+  }
+
+  .mobile-icon-box {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--color-border);
+    color: var(--color-muted);
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+  }
+  .mobile-icon-box svg {
+    display: block;
+  }
+  .mobile-link:hover .mobile-icon-box {
+    background: rgba(255, 255, 255, 0.07);
+    color: var(--color-foreground);
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+
+  .mobile-label {
+    flex: 1;
+  }
+
+  .mobile-arrow {
+    font-size: 0.875rem;
+    color: var(--color-border);
+    transition: all 0.2s ease;
+    opacity: 0;
+    transform: translateX(-4px);
+  }
+  .mobile-link:hover .mobile-arrow {
+    opacity: 1;
+    transform: translateX(0);
+    color: var(--color-muted);
+  }
+
+  .mobile-divider {
+    width: 100%;
+    height: 1px;
+    background: var(--color-border);
+    opacity: 0.4;
+    margin: 8px 0;
+  }
+
+  .mobile-bottom {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .mobile-social-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .mobile-socials {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .mobile-status {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.75rem;
+    color: #52525b;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .mobile-status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #22c55e;
+    box-shadow: 0 0 4px #22c55e80;
+    animation: statusPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes statusPulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.3;
+    }
+  }
 </style>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", function () {
+    var btn = document.getElementById("hamburger-btn");
+    var menu = document.getElementById("mobile-menu");
+    if (!btn || !menu) return;
+
+    var isOpen = false;
+
+    function openMenu() {
+      isOpen = true;
+      btn.classList.add("is-active");
+      btn.setAttribute("aria-expanded", "true");
+      menu.classList.add("is-open");
+      menu.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeMenu() {
+      isOpen = false;
+      btn.classList.remove("is-active");
+      btn.setAttribute("aria-expanded", "false");
+      menu.classList.remove("is-open");
+      menu.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+
+    function toggleMenu() {
+      isOpen ? closeMenu() : openMenu();
+    }
+
+    btn.addEventListener("click", toggleMenu);
+
+    // Close when clicking a nav link
+    var links = menu.querySelectorAll("a");
+    for (var i = 0; i < links.length; i++) {
+      links[i].addEventListener("click", closeMenu);
+    }
+
+    // Close on Escape key
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeMenu();
+    });
+  });
+</script>
