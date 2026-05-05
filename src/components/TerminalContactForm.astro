@@ -21,7 +21,7 @@ const t = useTranslations(lang);
         </div>
         <div class="flex-1 flex justify-center">
           <span
-            class="text-[10px] tracking-[0.2em] text-zinc-500 font-mono font-medium"
+            class="text-[10px] tracking-[0.2em] text-zinc-400 font-mono font-medium"
             >Terminal</span
           >
         </div>
@@ -36,9 +36,9 @@ const t = useTranslations(lang);
         <div class="space-y-6 group/field">
           <div class="flex flex-wrap items-center gap-2">
             <span class="text-[#27c93f] font-bold">user@kernel</span>
-            <span class="text-zinc-600">:</span>
+            <span class="text-zinc-500">:</span>
             <span class="text-[#3b82f6] font-bold">~/contact</span>
-            <span class="text-zinc-400">$</span>
+            <span class="text-zinc-300">$</span>
             <label for="context" class="text-zinc-300 font-medium"
               >{t("contact.context.label")}</label
             >
@@ -52,7 +52,7 @@ const t = useTranslations(lang);
               required
               rows="3"
               placeholder={t("contact.context.placeholder")}
-              class="w-full bg-transparent border-none outline-none text-zinc-100 placeholder:text-zinc-800 resize-none focus:ring-0 p-0 leading-relaxed"
+              class="w-full bg-transparent border-none outline-none text-zinc-100 placeholder:text-zinc-600 resize-none focus:ring-0 p-0 leading-relaxed"
             ></textarea>
           </div>
         </div>
@@ -60,9 +60,9 @@ const t = useTranslations(lang);
         <div class="space-y-6 group/field">
           <div class="flex flex-wrap items-center gap-2">
             <span class="text-[#27c93f] font-bold">user@kernel</span>
-            <span class="text-zinc-600">:</span>
+            <span class="text-zinc-500">:</span>
             <span class="text-[#3b82f6] font-bold">~/contact</span>
-            <span class="text-zinc-400">$</span>
+            <span class="text-zinc-300">$</span>
             <label for="contact" class="text-zinc-300 font-medium"
               >{t("contact.info.label")}</label
             >
@@ -76,13 +76,13 @@ const t = useTranslations(lang);
               name="contact"
               required
               placeholder={t("contact.info.placeholder")}
-              class="w-full bg-transparent border-none outline-none text-zinc-100 placeholder:text-zinc-800 focus:ring-0 p-0"
+              class="w-full bg-transparent border-none outline-none text-zinc-100 placeholder:text-zinc-600 focus:ring-0 p-0"
             />
           </div>
           <div class="flex justify-end mt-4">
             <button
               type="submit"
-              class="text-zinc-500 hover:text-[#27c93f] transition-all duration-300 flex items-center gap-2 group/btn"
+              class="text-zinc-400 hover:text-[#27c93f] transition-all duration-300 flex items-center gap-2 group/btn"
             >
               <span
                 class="text-xs opacity-0 group-hover/btn:opacity-100 transition-all -translate-x-2 group-hover/btn:translate-x-0"
