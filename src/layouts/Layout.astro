@@ -3,6 +3,7 @@ import '../styles/global.css';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import { getLangFromUrl } from '../i18n/utils';
+import { ClientRouter } from 'astro:transitions';
 
 interface Props {
 	title: string;
@@ -104,6 +105,7 @@ const ogImage = `${siteUrl}/og-image.png`;
 				"https://jeronimomayorca.vercel.app"
 			]
 		})} />
+		<ClientRouter />
 	</head>
 	<body class="bg-background text-foreground antialiased font-sans selection:bg-accent selection:text-background">
 		<Navbar />
@@ -111,6 +113,82 @@ const ogImage = `${siteUrl}/og-image.png`;
 			<slot />
 		</main>
 		<Footer />
+		<script>
+			let scrollPosition = 0;
+			let isLangSwitch = false;
+
+			function updateTextsOnly(oldNode, newNode) {
+				if (!oldNode || !newNode) return;
+
+				if (oldNode.nodeType === Node.TEXT_NODE && newNode.nodeType === Node.TEXT_NODE) {
+					if (oldNode.textContent !== newNode.textContent) {
+						oldNode.textContent = newNode.textContent;
+					}
+					return;
+				}
+
+				if (oldNode.nodeType === Node.ELEMENT_NODE && newNode.nodeType === Node.ELEMENT_NODE) {
+					// Skip script and style tags
+					if (oldNode.tagName === 'SCRIPT' || oldNode.tagName === 'STYLE') return;
+
+					// Update common attributes
+					['href', 'alt', 'title', 'placeholder', 'aria-label'].forEach(attr => {
+						if (newNode.hasAttribute(attr)) {
+							if (oldNode.getAttribute(attr) !== newNode.getAttribute(attr)) {
+								oldNode.setAttribute(attr, newNode.getAttribute(attr));
+							}
+						} else if (oldNode.hasAttribute(attr)) {
+							oldNode.removeAttribute(attr);
+						}
+					});
+
+					const oldChildren = Array.from(oldNode.childNodes);
+					const newChildren = Array.from(newNode.childNodes);
+
+					if (oldChildren.length === newChildren.length) {
+						for (let i = 0; i < oldChildren.length; i++) {
+							updateTextsOnly(oldChildren[i], newChildren[i]);
+						}
+					} else {
+						// Structure mismatch fallback
+						oldNode.innerHTML = newNode.innerHTML;
+					}
+				}
+			}
+
+			document.addEventListener('astro:before-preparation', (e) => {
+				const currentUrl = new URL(window.location.href);
+				const targetUrl = new URL(e.to);
+				
+				// Check if it's just a language switch (same path, different lang prefix)
+				const currentPath = currentUrl.pathname.replace(/^\/es/, '') || '/';
+				const targetPath = targetUrl.pathname.replace(/^\/es/, '') || '/';
+				
+				if (currentPath === targetPath) {
+					isLangSwitch = true;
+					scrollPosition = window.scrollY;
+				} else {
+					isLangSwitch = false;
+				}
+			});
+
+			document.addEventListener('astro:before-swap', (e) => {
+				if (isLangSwitch) {
+					// Override the default swap to prevent DOM destruction
+					e.swap = () => {
+						document.title = e.newDocument.title;
+						document.documentElement.lang = e.newDocument.documentElement.lang;
+						updateTextsOnly(document.body, e.newDocument.body);
+					};
+				}
+			});
+
+			document.addEventListener('astro:after-swap', () => {
+				if (isLangSwitch) {
+					window.scrollTo({ top: scrollPosition, behavior: 'instant' });
+				}
+			});
+		</script>
 	</body>
 </html>
 
