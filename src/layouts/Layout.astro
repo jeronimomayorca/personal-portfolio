@@ -1,9 +1,9 @@
 ---
-import '../styles/global.css';
-import Navbar from '../components/Navbar.astro';
-import Footer from '../components/Footer.astro';
-import { getLangFromUrl } from '../i18n/utils';
-import { ClientRouter } from 'astro:transitions';
+import "../styles/global.css";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import { getLangFromUrl } from "../i18n/utils";
+import { ClientRouter } from "astro:transitions";
 
 interface Props {
 	title: string;
@@ -14,24 +14,24 @@ interface Props {
 const lang = getLangFromUrl(Astro.url);
 
 const defaultDescriptions = {
-  en: 'Jerónimo Mayorca — Senior Software Engineer specializing in AI, Backend Engineering, and Cloud Architecture. 5+ years building scalable systems, LLM integrations, and data-driven solutions.',
-  es: 'Jerónimo Mayorca — Ingeniero de Software Senior especializado en IA, Backend Engineering y Arquitectura Cloud. +5 años construyendo sistemas escalables, integraciones LLM y soluciones orientadas a datos.',
+	en: "Jerónimo Mayorca — Senior Software Engineer specializing in AI, Backend Engineering, and Cloud Architecture. 5+ years building scalable systems, LLM integrations, and data-driven solutions.",
+	es: "Jerónimo Mayorca — Ingeniero de Software Senior especializado en IA, Backend Engineering y Arquitectura Cloud. +5 años construyendo sistemas escalables, integraciones LLM y soluciones orientadas a datos.",
 };
 
-const { 
-  title, 
-  description = defaultDescriptions[lang] || defaultDescriptions.en,
-  fullWidth = false
+const {
+	title,
+	description = defaultDescriptions[lang] || defaultDescriptions.en,
+	fullWidth = false,
 } = Astro.props;
 
-const siteUrl = 'https://jeronimomayorca.vercel.app';
+const siteUrl = "https://jeronimomayorca.vercel.app";
 const canonicalPath = Astro.url.pathname;
 const canonicalUrl = `${siteUrl}${canonicalPath}`;
 
 // Build hreflang alternate URLs
-const pathWithoutLang = canonicalPath.replace(/^\/es/, '') || '/';
+const pathWithoutLang = canonicalPath.replace(/^\/es/, "") || "/";
 const enUrl = `${siteUrl}${pathWithoutLang}`;
-const esUrl = `${siteUrl}/es${pathWithoutLang === '/' ? '/' : pathWithoutLang}`;
+const esUrl = `${siteUrl}/es${pathWithoutLang === "/" ? "/" : pathWithoutLang}`;
 
 const fullTitle = `${title} | Jerónimo Mayorca`;
 const ogImage = `${siteUrl}/og-image.png`;
@@ -44,13 +44,16 @@ const ogImage = `${siteUrl}/og-image.png`;
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
 		<meta name="generator" content={Astro.generator} />
-		
+
 		<!-- ═══ Primary SEO ═══ -->
 		<title>{fullTitle}</title>
 		<meta name="description" content={description} />
 		<meta name="author" content="Jerónimo Mayorca" />
 		<meta name="robots" content="index, follow" />
-		<meta name="keywords" content="Jeronimo Mayorca, jeronimo mayorca, jeronimomayorca, mayorcajeronimo, jeronimomayorcaar, Mayorcadev, mayorcadev, JMayorca, AI Developer, software development, Backend Engineer, Full Stack Developer, Python Developer, Machine Learning Engineer, LLM Integration, Cloud Architect, NLP Engineer, Data Engineer, FastAPI, Node.js, TypeScript, React, desarrollador de software, ingeniero de software, desarrollador IA" />
+		<meta
+			name="keywords"
+			content="Jeronimo Mayorca, jeronimo mayorca, jeronimomayorca, mayorcajeronimo, jeronimomayorcaar, Mayorcadev, mayorcadev, JMayorca, AI Developer, software development, Backend Engineer, Full Stack Developer, Python Developer, Machine Learning Engineer, LLM Integration, Cloud Architect, NLP Engineer, Data Engineer, FastAPI, Node.js, TypeScript, React, desarrollador de software, ingeniero de software, desarrollador IA"
+		/>
 		<link rel="canonical" href={canonicalUrl} />
 
 		<!-- ═══ Internationalization ═══ -->
@@ -66,76 +69,142 @@ const ogImage = `${siteUrl}/og-image.png`;
 		<meta property="og:image" content={ogImage} />
 		<meta property="og:image:width" content="1200" />
 		<meta property="og:image:height" content="630" />
-		<meta property="og:image:alt" content="Jerónimo Mayorca — AI & Backend Engineer" />
+		<meta
+			property="og:image:alt"
+			content="Jerónimo Mayorca — AI & Backend Engineer"
+		/>
 		<meta property="og:site_name" content="Jerónimo Mayorca | Portfolio" />
-		<meta property="og:locale" content={lang === 'es' ? 'es_AR' : 'en_US'} />
-		<meta property="og:locale:alternate" content={lang === 'es' ? 'en_US' : 'es_AR'} />
+		<meta
+			property="og:locale"
+			content={lang === "es" ? "es_AR" : "en_US"}
+		/>
+		<meta
+			property="og:locale:alternate"
+			content={lang === "es" ? "en_US" : "es_AR"}
+		/>
 
 		<!-- ═══ Twitter Card ═══ -->
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content={fullTitle} />
 		<meta name="twitter:description" content={description} />
 		<meta name="twitter:image" content={ogImage} />
-		<meta name="twitter:image:alt" content="Jerónimo Mayorca — AI & Backend Engineer" />
-		
+		<meta
+			name="twitter:image:alt"
+			content="Jerónimo Mayorca — AI & Backend Engineer"
+		/>
+
 		<!-- ═══ Fonts ═══ -->
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+			rel="stylesheet"
+		/>
 
 		<!-- ═══ Structured Data (JSON-LD) ═══ -->
-		<script type="application/ld+json" set:html={JSON.stringify({
-			"@context": "https://schema.org",
-			"@type": "Person",
-			"name": "Jerónimo Mayorca",
-			"alternateName": ["jeronimomayorca", "mayorcajeronimo", "jeronimomayorcaar", "Mayorcadev", "mayorcadev", "JMayorca"],
-			"url": siteUrl,
-			"image": ogImage,
-			"jobTitle": "Senior Software Engineer",
-			"description": defaultDescriptions.en,
-			"knowsAbout": [
-				"Artificial Intelligence", "Machine Learning", "Backend Engineering", 
-				"Cloud Architecture", "Python", "TypeScript", "Node.js", "React",
-				"FastAPI", "LLM Integration", "NLP", "Data Engineering",
-				"PostgreSQL", "Docker", "AWS", "Go"
-			],
-			"sameAs": [
-				"https://github.com/jeronimomayorcaar",
-				"https://linkedin.com/in/jeronimomayorca",
-				"https://jeronimomayorca.vercel.app"
-			]
-		})} />
+		<script
+			type="application/ld+json"
+			set:html={JSON.stringify({
+				"@context": "https://schema.org",
+				"@type": "Person",
+				name: "Jerónimo Mayorca",
+				alternateName: [
+					"jeronimomayorca",
+					"mayorcajeronimo",
+					"jeronimomayorcaar",
+					"Mayorcadev",
+					"mayorcadev",
+					"JMayorca",
+				],
+				url: siteUrl,
+				image: ogImage,
+				jobTitle: "Senior Software Engineer",
+				description: defaultDescriptions.en,
+				knowsAbout: [
+					"Artificial Intelligence",
+					"Machine Learning",
+					"Backend Engineering",
+					"Cloud Architecture",
+					"Python",
+					"TypeScript",
+					"Node.js",
+					"React",
+					"FastAPI",
+					"LLM Integration",
+					"NLP",
+					"Data Engineering",
+					"PostgreSQL",
+					"Docker",
+					"AWS",
+					"Go",
+				],
+				sameAs: [
+					"https://github.com/jeronimomayorcaar",
+					"https://linkedin.com/in/jeronimomayorca",
+					"https://jeronimomayorca.vercel.app",
+				],
+			})}
+		/>
 		<ClientRouter />
 	</head>
-	<body class="bg-background text-foreground antialiased font-sans selection:bg-accent selection:text-background">
+	<body
+		class="bg-background text-foreground antialiased font-sans selection:bg-accent selection:text-background"
+	>
 		<Navbar />
-		<main class={fullWidth ? "w-full min-h-screen" : "max-w-4xl mx-auto px-8 pt-44 pb-20 min-h-screen"}>
+		<main
+			class={fullWidth
+				? "w-full min-h-screen"
+				: "max-w-4xl mx-auto px-8 pt-44 pb-20 min-h-screen"}
+		>
 			<slot />
 		</main>
 		<Footer />
 		<script>
-			let scrollPosition = 0;
-			let isLangSwitch = false;
-
+			/**
+			 * @param {Node} oldNode
+			 * @param {Node} newNode
+			 */
 			function updateTextsOnly(oldNode, newNode) {
 				if (!oldNode || !newNode) return;
 
-				if (oldNode.nodeType === Node.TEXT_NODE && newNode.nodeType === Node.TEXT_NODE) {
+				if (
+					oldNode.nodeType === Node.TEXT_NODE &&
+					newNode.nodeType === Node.TEXT_NODE
+				) {
 					if (oldNode.textContent !== newNode.textContent) {
 						oldNode.textContent = newNode.textContent;
 					}
 					return;
 				}
 
-				if (oldNode.nodeType === Node.ELEMENT_NODE && newNode.nodeType === Node.ELEMENT_NODE) {
+				if (
+					oldNode.nodeType === Node.ELEMENT_NODE &&
+					newNode.nodeType === Node.ELEMENT_NODE
+				) {
 					// Skip script and style tags
-					if (oldNode.tagName === 'SCRIPT' || oldNode.tagName === 'STYLE') return;
+					if (
+						oldNode.tagName === "SCRIPT" ||
+						oldNode.tagName === "STYLE"
+					)
+						return;
 
 					// Update common attributes
-					['href', 'alt', 'title', 'placeholder', 'aria-label'].forEach(attr => {
+					[
+						"href",
+						"alt",
+						"title",
+						"placeholder",
+						"aria-label",
+					].forEach((attr) => {
 						if (newNode.hasAttribute(attr)) {
-							if (oldNode.getAttribute(attr) !== newNode.getAttribute(attr)) {
-								oldNode.setAttribute(attr, newNode.getAttribute(attr));
+							if (
+								oldNode.getAttribute(attr) !==
+								newNode.getAttribute(attr)
+							) {
+								oldNode.setAttribute(
+									attr,
+									newNode.getAttribute(attr),
+								);
 							}
 						} else if (oldNode.hasAttribute(attr)) {
 							oldNode.removeAttribute(attr);
@@ -156,36 +225,44 @@ const ogImage = `${siteUrl}/og-image.png`;
 				}
 			}
 
-			document.addEventListener('astro:before-preparation', (e) => {
-				const currentUrl = new URL(window.location.href);
-				const targetUrl = new URL(e.to);
+			document.addEventListener("click", async (e) => {
+				const target = e.target;
+				// Check if the click is an element
+				if (!(target instanceof Element)) return;
 				
-				// Check if it's just a language switch (same path, different lang prefix)
-				const currentPath = currentUrl.pathname.replace(/^\/es/, '') || '/';
-				const targetPath = targetUrl.pathname.replace(/^\/es/, '') || '/';
-				
-				if (currentPath === targetPath) {
-					isLangSwitch = true;
-					scrollPosition = window.scrollY;
-				} else {
-					isLangSwitch = false;
-				}
-			});
+				const link = target.closest(".lang-link");
+				if (!link || !(link instanceof HTMLAnchorElement)) return;
 
-			document.addEventListener('astro:before-swap', (e) => {
-				if (isLangSwitch) {
-					// Override the default swap to prevent DOM destruction
-					e.swap = () => {
-						document.title = e.newDocument.title;
-						document.documentElement.lang = e.newDocument.documentElement.lang;
-						updateTextsOnly(document.body, e.newDocument.body);
+				if (link.classList.contains("active-lang")) {
+					e.preventDefault();
+					return;
+				}
+
+				e.preventDefault();
+				const targetUrl = link.href;
+				const currentScrollY = window.scrollY;
+
+				try {
+					const response = await fetch(targetUrl);
+					const htmlText = await response.text();
+					const parser = new DOMParser();
+					const newDoc = parser.parseFromString(htmlText, "text/html");
+
+					const performSwap = () => {
+						document.title = newDoc.title;
+						document.documentElement.lang = newDoc.documentElement.lang;
+						updateTextsOnly(document.body, newDoc.body);
+						window.history.pushState({}, "", targetUrl);
+						window.scrollTo({ top: currentScrollY, behavior: "instant" });
 					};
-				}
-			});
 
-			document.addEventListener('astro:after-swap', () => {
-				if (isLangSwitch) {
-					window.scrollTo({ top: scrollPosition, behavior: 'instant' });
+					if (document.startViewTransition) {
+						document.startViewTransition(() => performSwap());
+					} else {
+						performSwap();
+					}
+				} catch (error) {
+					window.location.href = targetUrl;
 				}
 			});
 		</script>
@@ -196,7 +273,7 @@ const ogImage = `${siteUrl}/og-image.png`;
 	:root {
 		color-scheme: dark;
 	}
-	
+
 	html {
 		scroll-behavior: smooth;
 	}

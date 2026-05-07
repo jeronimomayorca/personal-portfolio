@@ -228,6 +228,8 @@ const pageTitle = 'My Career';
 
 
     if (!droneContainer || nodes.length === 0) return;
+    if (droneContainer.dataset.gsapInitialized === 'true') return;
+    droneContainer.dataset.gsapInitialized = 'true';
 
     ScrollTrigger.getAll().forEach(t => t.kill());
 
