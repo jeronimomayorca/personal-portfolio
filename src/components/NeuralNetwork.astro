@@ -62,6 +62,7 @@
   let rafId = 0;
   let globalPulse = { t: 0 };    // driven by GSAP
   let fadeAlpha = { value: 0 };  // overall opacity controlled by GSAP
+  let resizeHandler: (() => void) | null = null;
 
   /* ── Helpers ───────────────────────────────────────────────── */
   function rand(min: number, max: number) {
@@ -221,6 +222,9 @@
 
   /* ── Bootstrap ─────────────────────────────────────────────── */
   function initNeuralNetwork() {
+    // Clean up any previous instance first
+    cleanupNeuralNetwork();
+
     canvas = document.querySelector<HTMLCanvasElement>("#neural-network-canvas");
     if (!canvas) return;
     ctx = canvas.getContext("2d");
@@ -232,8 +236,6 @@
 
     // Continuous GSAP tween that drives the pulse `t` from 0 → a large number
     // We use modular arithmetic inside draw() per edge
-    gsap.killTweensOf(globalPulse);
-    gsap.killTweensOf(fadeAlpha);
     globalPulse.t = 0;
     fadeAlpha.value = 0;
 
@@ -259,35 +261,30 @@
     });
 
     // Start render loop
-    cancelAnimationFrame(rafId);
     tick();
 
     // Handle resize
-    const onResize = () => {
+    resizeHandler = () => {
       resize();
       createNodes();
       createEdges();
     };
-    window.addEventListener("resize", onResize);
+    window.addEventListener("resize", resizeHandler);
   }
 
   function cleanupNeuralNetwork() {
     cancelAnimationFrame(rafId);
+    rafId = 0;
     gsap.killTweensOf(globalPulse);
     gsap.killTweensOf(fadeAlpha);
+    if (canvas) gsap.killTweensOf(canvas);
+    if (resizeHandler) {
+      window.removeEventListener("resize", resizeHandler);
+      resizeHandler = null;
+    }
   }
 
   /* ── Lifecycle ─────────────────────────────────────────────── */
-  document.addEventListener("astro:page-load", () => {
-    cleanupNeuralNetwork();
-    initNeuralNetwork();
-  });
-
+  document.addEventListener("astro:page-load", initNeuralNetwork);
   document.addEventListener("astro:before-preparation", cleanupNeuralNetwork);
-
-  if (document.readyState === "complete") {
-    initNeuralNetwork();
-  } else {
-    document.addEventListener("DOMContentLoaded", initNeuralNetwork);
-  }
 </script>

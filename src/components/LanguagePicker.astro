@@ -23,9 +23,9 @@ function getPath(targetLang: string) {
     Object.entries(languages).map(([l, label]) => (
       <a
         href={getPath(l)}
-        class={`px-2 py-1 transition-colors ${
+        class={`lang-link px-2 py-1 transition-colors ${
           l === lang
-            ? "text-foreground font-bold border-b border-foreground"
+            ? "active-lang text-foreground font-bold border-b border-foreground"
             : "text-muted hover:text-foreground"
         }`}
       >

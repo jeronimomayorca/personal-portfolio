@@ -18,10 +18,14 @@
     "@astrojs/vercel": "^10.0.4",
     "astro": "^6.1.7",
     "gsap": "^3.15.0",
-    "lucide-react": "^0.475.0"
+    "lucide-react": "^0.475.0",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.1.4",
+    "@types/react": "^19.2.16",
+    "@types/react-dom": "^19.2.3",
     "sharp": "^0.34.2",
     "tailwindcss": "^4.1.4"
   },
@@ -33,5 +37,11 @@
     "smol-toml": "^1.6.1",
     "yaml": "^2.8.3",
     "path-to-regexp": "^6.3.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp"
+    ]
   }
 }
