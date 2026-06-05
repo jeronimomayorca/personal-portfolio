@@ -160,39 +160,58 @@ const ogImage = `${siteUrl}/og-image.png`;
 		</main>
 		<Footer />
 		<script is:inline>
-			(function () {
-				// Save scroll position when clicking a lang-link
-				document.addEventListener("click", function (e) {
-					var target = e.target;
-					if (!(target instanceof Element)) return;
-					var link = target.closest(".lang-link");
-					if (!link || !(link instanceof HTMLAnchorElement)) return;
-					if (link.classList.contains("active-lang")) {
-						e.preventDefault();
-						return;
-					}
-					history.scrollRestoration = "manual";
-					sessionStorage.setItem("lang-switch-scroll", String(window.scrollY));
+		(function () {
+			// ═══ Language-switch scroll preservation ═══
+			// Works with Astro Client Router (View Transitions).
+
+			// 1) Before Astro prepares the new page, check if this
+			//    navigation was triggered by a lang-link click.
+			//    If so, save scroll and tell Astro to skip its scroll reset.
+			document.addEventListener("astro:before-preparation", function (e) {
+				var link = e.sourceElement;
+				if (!link || !(link instanceof HTMLAnchorElement)) return;
+				if (!link.classList.contains("lang-link")) return;
+				if (link.classList.contains("active-lang")) return;
+				// Save scroll position
+				sessionStorage.setItem("lang-switch-scroll", String(window.scrollY));
+			});
+
+			// 2) After Astro swaps in the new document, override its
+			//    scroll handler to restore our saved position instead.
+			document.addEventListener("astro:before-swap", function (e) {
+				var saved = sessionStorage.getItem("lang-switch-scroll");
+				if (saved !== null) {
+					// Replace Astro's default scroll behavior
+					e.scroll = function () {
+						// Will be executed after swap completes
+					};
+				}
+			});
+
+			// 3) After the new page loads, restore scroll position.
+			document.addEventListener("astro:page-load", function () {
+				var saved = sessionStorage.getItem("lang-switch-scroll");
+				if (saved === null) return;
+				sessionStorage.removeItem("lang-switch-scroll");
+				var y = Number(saved);
+				// Use requestAnimationFrame to ensure DOM has rendered
+				requestAnimationFrame(function () {
+					window.scrollTo({ top: y, behavior: "instant" });
 				});
+			});
 
-				// Restore scroll position on first paint after language navigation
-				function tryRestore() {
-					var saved = sessionStorage.getItem("lang-switch-scroll");
-					if (!saved) return;
-					sessionStorage.removeItem("lang-switch-scroll");
-					window.scrollTo({ top: Number(saved), behavior: "instant" });
-					history.scrollRestoration = "auto";
+			// 4) Also prevent clicking the already-active language
+			document.addEventListener("click", function (e) {
+				var target = e.target;
+				if (!(target instanceof Element)) return;
+				var link = target.closest(".lang-link");
+				if (!link) return;
+				if (link.classList.contains("active-lang")) {
+					e.preventDefault();
 				}
-
-				// Run as early as possible
-				if (document.readyState === "loading") {
-					document.addEventListener("DOMContentLoaded", tryRestore);
-				} else {
-					tryRestore();
-				}
-				window.addEventListener("pageshow", tryRestore);
-			})();
-		</script>
+			});
+		})();
+	</script>
 	</body>
 </html>
 
