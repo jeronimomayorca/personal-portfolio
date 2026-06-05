@@ -423,47 +423,45 @@ const translatePath = useTranslatedPath(lang);
   }
 </style>
 
-<script is:inline>
-  document.addEventListener("DOMContentLoaded", function () {
-    var btn = document.getElementById("hamburger-btn");
+<script>
+  var mobileMenuAbort = null;
+
+  function initMobileMenu() {
+    if (mobileMenuAbort) mobileMenuAbort.abort();
+    mobileMenuAbort = new AbortController();
+    var signal = mobileMenuAbort.signal;
+
     var menu = document.getElementById("mobile-menu");
+    var btn = document.getElementById("hamburger-btn");
     if (!btn || !menu) return;
 
-    var isOpen = false;
+    btn.addEventListener("click", function () {
+      if (btn.classList.contains("is-active")) {
+        btn.classList.remove("is-active");
+        btn.setAttribute("aria-expanded", "false");
+        menu.classList.remove("is-open");
+        menu.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+      } else {
+        btn.classList.add("is-active");
+        btn.setAttribute("aria-expanded", "true");
+        menu.classList.add("is-open");
+        menu.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+      }
+    }, { signal: signal });
 
-    function openMenu() {
-      isOpen = true;
-      btn.classList.add("is-active");
-      btn.setAttribute("aria-expanded", "true");
-      menu.classList.add("is-open");
-      menu.setAttribute("aria-hidden", "false");
-      document.body.style.overflow = "hidden";
-    }
-
-    function closeMenu() {
-      isOpen = false;
-      btn.classList.remove("is-active");
-      btn.setAttribute("aria-expanded", "false");
-      menu.classList.remove("is-open");
-      menu.setAttribute("aria-hidden", "true");
-      document.body.style.overflow = "";
-    }
-
-    function toggleMenu() {
-      isOpen ? closeMenu() : openMenu();
-    }
-
-    btn.addEventListener("click", toggleMenu);
-
-    // Close when clicking a nav link
     var links = menu.querySelectorAll("a");
     for (var i = 0; i < links.length; i++) {
-      links[i].addEventListener("click", closeMenu);
+      links[i].addEventListener("click", function () {
+        btn.classList.remove("is-active");
+        btn.setAttribute("aria-expanded", "false");
+        menu.classList.remove("is-open");
+        menu.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+      }, { signal: signal });
     }
+  }
 
-    // Close on Escape key
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape") closeMenu();
-    });
-  });
+  document.addEventListener("astro:page-load", initMobileMenu);
 </script>

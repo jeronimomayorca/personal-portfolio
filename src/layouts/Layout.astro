@@ -159,112 +159,39 @@ const ogImage = `${siteUrl}/og-image.png`;
 			<slot />
 		</main>
 		<Footer />
-		<script>
-			/**
-			 * @param {Node} oldNode
-			 * @param {Node} newNode
-			 */
-			function updateTextsOnly(oldNode, newNode) {
-				if (!oldNode || !newNode) return;
-
-				if (
-					oldNode.nodeType === Node.TEXT_NODE &&
-					newNode.nodeType === Node.TEXT_NODE
-				) {
-					if (oldNode.textContent !== newNode.textContent) {
-						oldNode.textContent = newNode.textContent;
-					}
-					return;
-				}
-
-				if (
-					oldNode.nodeType === Node.ELEMENT_NODE &&
-					newNode.nodeType === Node.ELEMENT_NODE
-				) {
-					// Skip script and style tags
-					if (
-						oldNode.tagName === "SCRIPT" ||
-						oldNode.tagName === "STYLE"
-					)
+		<script is:inline>
+			(function () {
+				// Save scroll position when clicking a lang-link
+				document.addEventListener("click", function (e) {
+					var target = e.target;
+					if (!(target instanceof Element)) return;
+					var link = target.closest(".lang-link");
+					if (!link || !(link instanceof HTMLAnchorElement)) return;
+					if (link.classList.contains("active-lang")) {
+						e.preventDefault();
 						return;
-
-					// Update common attributes
-					[
-						"href",
-						"alt",
-						"title",
-						"placeholder",
-						"aria-label",
-					].forEach((attr) => {
-						if (newNode.hasAttribute(attr)) {
-							if (
-								oldNode.getAttribute(attr) !==
-								newNode.getAttribute(attr)
-							) {
-								oldNode.setAttribute(
-									attr,
-									newNode.getAttribute(attr),
-								);
-							}
-						} else if (oldNode.hasAttribute(attr)) {
-							oldNode.removeAttribute(attr);
-						}
-					});
-
-					const oldChildren = Array.from(oldNode.childNodes);
-					const newChildren = Array.from(newNode.childNodes);
-
-					if (oldChildren.length === newChildren.length) {
-						for (let i = 0; i < oldChildren.length; i++) {
-							updateTextsOnly(oldChildren[i], newChildren[i]);
-						}
-					} else {
-						// Structure mismatch fallback
-						oldNode.innerHTML = newNode.innerHTML;
 					}
-				}
-			}
+					history.scrollRestoration = "manual";
+					sessionStorage.setItem("lang-switch-scroll", String(window.scrollY));
+				});
 
-			document.addEventListener("click", async (e) => {
-				const target = e.target;
-				// Check if the click is an element
-				if (!(target instanceof Element)) return;
-				
-				const link = target.closest(".lang-link");
-				if (!link || !(link instanceof HTMLAnchorElement)) return;
-
-				if (link.classList.contains("active-lang")) {
-					e.preventDefault();
-					return;
+				// Restore scroll position on first paint after language navigation
+				function tryRestore() {
+					var saved = sessionStorage.getItem("lang-switch-scroll");
+					if (!saved) return;
+					sessionStorage.removeItem("lang-switch-scroll");
+					window.scrollTo({ top: Number(saved), behavior: "instant" });
+					history.scrollRestoration = "auto";
 				}
 
-				e.preventDefault();
-				const targetUrl = link.href;
-				const currentScrollY = window.scrollY;
-
-				try {
-					const response = await fetch(targetUrl);
-					const htmlText = await response.text();
-					const parser = new DOMParser();
-					const newDoc = parser.parseFromString(htmlText, "text/html");
-
-					const performSwap = () => {
-						document.title = newDoc.title;
-						document.documentElement.lang = newDoc.documentElement.lang;
-						updateTextsOnly(document.body, newDoc.body);
-						window.history.pushState({}, "", targetUrl);
-						window.scrollTo({ top: currentScrollY, behavior: "instant" });
-					};
-
-					if (document.startViewTransition) {
-						document.startViewTransition(() => performSwap());
-					} else {
-						performSwap();
-					}
-				} catch (error) {
-					window.location.href = targetUrl;
+				// Run as early as possible
+				if (document.readyState === "loading") {
+					document.addEventListener("DOMContentLoaded", tryRestore);
+				} else {
+					tryRestore();
 				}
-			});
+				window.addEventListener("pageshow", tryRestore);
+			})();
 		</script>
 	</body>
 </html>

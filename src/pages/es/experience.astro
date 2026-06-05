@@ -210,6 +210,14 @@ const milestones = [
 
   gsap.registerPlugin(ScrollTrigger);
 
+  function cleanupExperience() {
+    ScrollTrigger.getAll().forEach(t => t.kill());
+    const container = document.querySelector("#drone-container");
+    if (container instanceof HTMLElement) {
+      delete container.dataset.gsapInitialized;
+    }
+  }
+
   const initExperience = () => {
     const droneContainer = document.querySelector("#drone-container");
     const cameraWrapper = document.querySelector("#camera-wrapper");
@@ -223,8 +231,8 @@ const milestones = [
 
 
     if (!droneContainer || nodes.length === 0) return;
-    if (droneContainer.dataset.gsapInitialized === 'true') return;
-    droneContainer.dataset.gsapInitialized = 'true';
+    if ((droneContainer as HTMLElement).dataset.gsapInitialized === 'true') return;
+    (droneContainer as HTMLElement).dataset.gsapInitialized = 'true';
 
     ScrollTrigger.getAll().forEach(t => t.kill());
 
@@ -353,9 +361,5 @@ const milestones = [
   };
 
   document.addEventListener("astro:page-load", initExperience);
-  if (document.readyState === "complete") {
-    initExperience();
-  } else {
-    document.addEventListener("DOMContentLoaded", initExperience);
-  }
+  document.addEventListener("astro:before-preparation", cleanupExperience);
 </script>

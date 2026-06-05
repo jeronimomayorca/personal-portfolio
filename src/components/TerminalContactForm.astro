@@ -114,10 +114,12 @@ const t = useTranslations(lang);
 <script>
   import { actions } from "astro:actions";
 
-  const form = document.getElementById("contact-form") as HTMLFormElement;
-  const status = document.getElementById("form-status");
+  function initContactForm() {
+    const form = document.getElementById("contact-form") as HTMLFormElement;
+    const status = document.getElementById("form-status");
 
-  if (form && status) {
+    if (!form || !status) return;
+
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
 
@@ -153,6 +155,8 @@ const t = useTranslations(lang);
       }
     });
   }
+
+  document.addEventListener("astro:page-load", initContactForm);
 </script>
 
 <style>

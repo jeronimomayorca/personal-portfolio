@@ -128,11 +128,13 @@ const currentYear = new Date().getFullYear();
 </style>
 
 <script>
-  const btn = document.getElementById("copy-email-btn");
-  const tooltip = document.getElementById("copy-tooltip");
-  const email = "mayorcajeronimo@gmail.com";
+  function initFooterCopy() {
+    const btn = document.getElementById("copy-email-btn");
+    const tooltip = document.getElementById("copy-tooltip");
+    const email = "mayorcajeronimo@gmail.com";
 
-  if (btn && tooltip) {
+    if (!btn || !tooltip) return;
+
     const lang = btn.getAttribute("data-lang");
     const msg =
       lang === "es"
@@ -169,4 +171,6 @@ const currentYear = new Date().getFullYear();
       }, 2500);
     });
   }
+
+  document.addEventListener("astro:page-load", initFooterCopy);
 </script>
